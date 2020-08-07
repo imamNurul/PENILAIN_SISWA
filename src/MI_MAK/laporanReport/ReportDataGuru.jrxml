@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="1035" pageHeight="750" orientation="Landscape" columnWidth="1015" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="kd_guru" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kd_kelas" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kd_mapel" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tbl_guru.`id` AS tbl_guru_id,
+     tbl_guru.`nip` AS tbl_guru_nip,
+     tbl_guru.`nama_guru` AS tbl_guru_nama_guru,
+     tbl_guru.`tempat_lahir` AS tbl_guru_tempat_lahir,
+     tbl_guru.`tanggal_lahir` AS tbl_guru_tanggal_lahir,
+     tbl_guru.`jenis_kelamin` AS tbl_guru_jenis_kelamin,
+     tbl_guru.`agama` AS tbl_guru_agama,
+     tbl_guru.`pendidikan_terakhir` AS tbl_guru_pendidikan_terakhir,
+     tbl_guru.`telp` AS tbl_guru_telp,
+     tbl_guru.`status` AS tbl_guru_status,
+     tbl_guru.`alamat` AS tbl_guru_alamat,
+     tbl_guru.`photo` AS tbl_guru_photo,
+     tbl_guru.`flag` AS tbl_guru_flag,
+     tbl_guru.`wali_kelas` AS tbl_guru_wali_kelas,
+     tbl_guru.`kd_kelas` AS tbl_guru_kd_kelas,
+     tbl_guru.`nm_kelas` AS tbl_guru_nm_kelas,
+     tbl_guru.`kd_mapel` AS tbl_guru_kd_mapel,
+     tbl_guru.`nm_mapel` AS tbl_guru_nm_mapel
+FROM
+     `tbl_guru` tbl_guru
+where tbl_guru.`kd_kelas` LIKE '%$P!{kd_kelas}%' AND
+tbl_guru.`nip` LIKE '%$P!{kd_guru}%' AND
+tbl_guru.`kd_mapel` LIKE '%$P!{kd_mapel}%']]>
+	</queryString>
+	<field name="tbl_guru_id" class="java.lang.Integer"/>
+	<field name="tbl_guru_nip" class="java.lang.String"/>
+	<field name="tbl_guru_nama_guru" class="java.lang.String"/>
+	<field name="tbl_guru_tempat_lahir" class="java.lang.String"/>
+	<field name="tbl_guru_tanggal_lahir" class="java.sql.Date"/>
+	<field name="tbl_guru_jenis_kelamin" class="java.lang.String"/>
+	<field name="tbl_guru_agama" class="java.lang.String"/>
+	<field name="tbl_guru_pendidikan_terakhir" class="java.lang.String"/>
+	<field name="tbl_guru_telp" class="java.lang.String"/>
+	<field name="tbl_guru_status" class="java.lang.String"/>
+	<field name="tbl_guru_alamat" class="java.lang.String"/>
+	<field name="tbl_guru_photo" class="java.lang.String"/>
+	<field name="tbl_guru_flag" class="java.lang.Integer"/>
+	<field name="tbl_guru_wali_kelas" class="java.lang.String"/>
+	<field name="tbl_guru_kd_kelas" class="java.lang.String"/>
+	<field name="tbl_guru_nm_kelas" class="java.lang.String"/>
+	<field name="tbl_guru_kd_mapel" class="java.lang.String"/>
+	<field name="tbl_guru_nm_mapel" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="0" width="503" height="29" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Data Guru di MI MATHLAUL ANWAR KOPO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="29" y="0" width="77" height="23" uuid="347fbb05-597d-49b1-b187-d1cb94a2a72d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="0" width="126" height="23" uuid="462e9651-deb8-444e-bcdd-136e9876b3d3"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Guru]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="29" height="23" uuid="78650a8f-83bf-4106-8140-2634b483ec74"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="0" width="82" height="23" uuid="1c7461dc-e0a2-4dfb-9892-0b86868e7c85"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tempat Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="0" width="77" height="23" uuid="c1cb1659-0d6b-45b4-ac8f-65dda9def526"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Lahir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="391" y="0" width="31" height="23" uuid="e5ecdccd-c201-4a02-8f3a-a63624d19b9f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[P/L]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="0" width="75" height="23" uuid="1da8af19-f062-4bfb-9e5e-fefa6b5aae9d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="497" y="0" width="83" height="23" uuid="123bcef9-ce4a-459b-a83f-6a951049a722"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telp]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="68" height="23" uuid="0c98f3b6-346a-4346-900d-5c7751093239"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="648" y="0" width="153" height="23" uuid="b3fc351a-2c9f-475a-bd8e-d22d49d98d1c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="801" y="0" width="62" height="23" uuid="f841f8ad-d117-4c73-8195-14611c0dfc73"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pendidikan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="863" y="0" width="57" height="23" uuid="ad44675f-5613-443d-8f3e-be895f048dd1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Wali Kelas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="920" y="0" width="95" height="23" uuid="afd8cba1-57ec-47bd-8b4e-e84125dc3fbb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mata Pelajaran]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="29" height="31" uuid="25c00861-1d4c-4260-84e8-36d8a3ee508d"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="29" y="0" width="77" height="31" uuid="995b69d2-5c1a-4d61-82bf-899955e53043"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_nip}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="126" height="31" uuid="a28b0790-37b8-483b-8b93-925dde3445cb"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_nama_guru}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="232" y="0" width="82" height="31" uuid="5f1369b1-38a1-49e0-8c93-4199afe15a4a"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_tempat_lahir}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd MMM yyyy">
+				<reportElement x="314" y="0" width="77" height="31" uuid="40c2b4ea-7e52-4e10-b332-93d631be6ebc"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_tanggal_lahir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="391" y="0" width="31" height="31" uuid="8fb1cede-4572-4bab-9f68-0e881fc7fdd9"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_jenis_kelamin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="0" width="75" height="31" uuid="06f92419-3b6f-47ab-96d5-cdedc8bbdbec"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_agama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="497" y="0" width="83" height="31" uuid="32062b49-5fc9-4731-90a2-8dc0ee13c5b0"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_telp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="0" width="68" height="31" uuid="d61609e5-e235-4315-a9d7-fa2a0cec3dd1"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="648" y="0" width="153" height="31" uuid="458d0264-2155-434f-90da-2258765fbb66"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="801" y="0" width="62" height="31" uuid="7643ccd0-fa30-4999-9841-ff5e1132658f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_pendidikan_terakhir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="863" y="0" width="57" height="31" uuid="d565e12a-5d95-4286-b00b-b1242a89d105"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_nm_kelas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="920" y="0" width="95" height="31" uuid="1e7da1c5-5e53-44da-bae8-678dea3039bd"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tbl_guru_nm_mapel}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
