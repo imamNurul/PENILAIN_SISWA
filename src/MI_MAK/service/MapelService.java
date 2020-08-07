@@ -154,10 +154,16 @@ public class MapelService {
             }catch(SQLException e){
                     
                     
+            }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
         }
             
     }
-            
     public List<Mapel> SelectAll(){
         
         PreparedStatement prepare = null;
@@ -165,7 +171,51 @@ public class MapelService {
         
         List<Mapel> list = new ArrayList<>();
      try{
-             String sql = "SELECT * FROM tbl_mapel where flag = 1";
+             String sql = "SELECT * FROM tbl_mapel";
+            prepare = koneksi.prepareStatement(sql);
+            
+            resultSet = prepare.executeQuery();
+            
+            while(resultSet.next()){
+                Mapel mapel = new Mapel();
+                mapel.setKd_mapel(resultSet.getString("kd_mapel"));
+                mapel.setNama_mapel(resultSet.getString("nama_mapel"));
+                mapel.setKeterangan(resultSet.getString("keterangan"));
+                mapel.setId(resultSet.getInt("id"));
+               
+                list.add(mapel);
+                
+            }
+            
+            return list;
+            
+        }catch(SQLException e){
+            return list;
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch(SQLException ex){
+                }
+            }
+        }
+         
+     }
+            
+    public List<Mapel> SelectAllByFlag(int fg){
+        
+        PreparedStatement prepare = null;
+        ResultSet resultSet = null;
+        
+        List<Mapel> list = new ArrayList<>();
+     try{
+             String sql = "SELECT * FROM tbl_mapel where flag = "+fg+"";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
@@ -215,7 +265,7 @@ public class MapelService {
                          "    inner join tbl_kelas k on k.kd_kelas = n.kd_kelas" +
                          "    where k.kd_kelas = '"+kd+"' and n.kd_mapel in (" +
                          "    select kd_mapel from tbl_nilai_header " +
-                         "    )) order by nama_mapel ASC";
+                         "    )) AND mp.flag = 1 order by nama_mapel ASC";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
@@ -269,7 +319,7 @@ public class MapelService {
                          "    where n.tahun_ajaran = '"+thn+"' AND n.semester = '"+smstr+"' "+
                          "    AND k.kd_kelas = '"+kls+"' and n.kd_mapel in (" +
                          "    select kd_mapel from tbl_nilai_header " +
-                         "    )) order by nama_mapel ASC";
+                         "    )) mp.flag = 1 order by nama_mapel ASC";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
@@ -316,7 +366,7 @@ public class MapelService {
         List<Mapel> list = new ArrayList<>();
         
         try{
-            String sql = "select distinct kd_mapel, nama_mapel from tbl_mapel order by nama_mapel ASC";
+            String sql = "select distinct kd_mapel, nama_mapel from tbl_mapel where flag = 1 order by nama_mapel ASC ";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();

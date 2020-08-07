@@ -69,6 +69,34 @@ public class PanelKelas extends javax.swing.JPanel {
         
     }
 
+    public void LoadKelasByflag(int fg){
+        
+        new SwingWorker<List<Kelas>, Object>(){
+
+            @Override
+            protected List<Kelas> doInBackground() throws Exception {
+                
+                Thread.sleep(1000);
+                List<Kelas> list = service.SelectAllByFlag(fg);
+
+                return list;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    tableModel.clear();
+                    for(Kelas jsb : get()){
+                    tableModel.add(jsb);
+                }
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(PanelKelas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+  
+        }.execute();
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,6 +114,8 @@ public class PanelKelas extends javax.swing.JPanel {
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        comboStatus = new javax.swing.JComboBox<>();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Data Kelas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
         setOpaque(false);
@@ -130,6 +160,17 @@ public class PanelKelas extends javax.swing.JPanel {
         });
         jPanel1.add(btnHapus);
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel2.setText("Status :");
+
+        comboStatus.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Active", "Non Active" }));
+        comboStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,12 +178,16 @@ public class PanelKelas extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 802, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 209, Short.MAX_VALUE))
+                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -152,7 +197,10 @@ public class PanelKelas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,7 +241,6 @@ public class PanelKelas extends javax.swing.JPanel {
             int index = tableKelas.convertRowIndexToModel(tableKelas.getSelectedRow());
             Kelas kl = tableModel.get(index);
              service.delete(kl.getId());
-             kelas.setFlag(0);
              LoadKelas();
              
         }
@@ -215,12 +262,29 @@ public class PanelKelas extends javax.swing.JPanel {
         
     }//GEN-LAST:event_txtCariKeyPressed
 
+    private void comboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStatusActionPerformed
+        // TODO add your handling code here:
+        switch (comboStatus.getSelectedIndex()) {
+            case 0:
+            LoadKelas();
+            break;
+            case 1:
+            LoadKelasByflag(1);
+            break;
+            default:
+            LoadKelasByflag(0);
+            break;
+        }
+    }//GEN-LAST:event_comboStatusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JComboBox<String> comboStatus;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private com.stripbandunk.jwidget.JDynamicTable tableKelas;

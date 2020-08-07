@@ -80,6 +80,35 @@ public class PanelSiswa extends javax.swing.JPanel {
         
     }
     
+    public void LoadSiswaByFlag(int fg){
+        
+        new SwingWorker<List<Siswa>, Object>(){
+
+            @Override
+            protected List<Siswa> doInBackground() throws Exception {
+                
+                Thread.sleep(1000);
+                List<Siswa> list = service.selectAllByFlag(fg);
+
+                return list;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    tableModel.clear();
+                    for(Siswa jsb : get()){
+                    tableModel.add(jsb);
+                }
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(PanelSiswa.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+  
+        }.execute();
+        
+    }
+    
     private class SiswaImgSelection implements ListSelectionListener{
 
         @Override
@@ -139,11 +168,12 @@ public class PanelSiswa extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
-        btnLihat = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
         panel_Gambar1 = new MI_MAK.siswa.Panel_Gambar();
         labelPhoto = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        comboStatus = new javax.swing.JComboBox<>();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -180,15 +210,6 @@ public class PanelSiswa extends javax.swing.JPanel {
         });
         jPanel2.add(btnUbah);
 
-        btnLihat.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        btnLihat.setText("Lihat");
-        btnLihat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLihatActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnLihat);
-
         btnHapus.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         btnHapus.setText("Hapus");
         btnHapus.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +243,17 @@ public class PanelSiswa extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel5.setText("Cari :");
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel1.setText("Status :");
+
+        comboStatus.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Active", "Non Active" }));
+        comboStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboStatusActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout tabInputSiswaLayout = new javax.swing.GroupLayout(tabInputSiswa);
         tabInputSiswa.setLayout(tabInputSiswaLayout);
         tabInputSiswaLayout.setHorizontalGroup(
@@ -235,7 +267,12 @@ public class PanelSiswa extends javax.swing.JPanel {
                             .addGroup(tabInputSiswaLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCari))
+                                .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(panel_Gambar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -247,7 +284,9 @@ public class PanelSiswa extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(tabInputSiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1)
+                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(tabInputSiswaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
@@ -306,10 +345,6 @@ public class PanelSiswa extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtCariKeyPressed
 
-    private void btnLihatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLihatActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLihatActionPerformed
-
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
             // TODO add your handling code here:
                 // TODO add your handling code here:
@@ -320,7 +355,6 @@ public class PanelSiswa extends javax.swing.JPanel {
             int index = tableSiswa.convertRowIndexToModel(tableSiswa.getSelectedRow());
             Siswa kls = tableModel.get(index);
              service.delete(kls.getId());
-             siswa.setFlag(0);
             LoadSiswa();
         }
         
@@ -331,12 +365,29 @@ public class PanelSiswa extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnHapusActionPerformed
 
+    private void comboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStatusActionPerformed
+        // TODO add your handling code here:
+        switch (comboStatus.getSelectedIndex()) {
+            case 0:
+                LoadSiswa();
+                break;
+            case 1:
+                LoadSiswaByFlag(1);
+                break;
+            default:
+                LoadSiswaByFlag(0);
+                break;
+        }
+        
+    }//GEN-LAST:event_comboStatusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
-    private javax.swing.JButton btnLihat;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
+    private javax.swing.JComboBox<String> comboStatus;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

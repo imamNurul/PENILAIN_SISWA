@@ -184,6 +184,13 @@ public class GuruService {
             }catch(SQLException e){
                     
                     
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
         }
             
     }
@@ -195,7 +202,7 @@ public class GuruService {
         
         List<Guru> list = new ArrayList<>();
      try{
-             String sql = "SELECT * FROM tbl_guru where flag = 1";
+             String sql = "SELECT * FROM tbl_guru";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
@@ -245,6 +252,64 @@ public class GuruService {
         }
          
      }   
+    
+    public List<Guru> SelectAllByFlag(int fg){
+        
+        PreparedStatement prepare = null;
+        ResultSet resultSet = null;
+        
+        List<Guru> list = new ArrayList<>();
+     try{
+             String sql = "SELECT * FROM tbl_guru where flag = "+fg+"";
+            prepare = koneksi.prepareStatement(sql);
+            
+            resultSet = prepare.executeQuery();
+            
+            while(resultSet.next()){
+                Guru guru = new Guru();
+                guru.setNip(resultSet.getString("nip"));
+                guru.setNama_guru(resultSet.getString("nama_guru"));
+                guru.setTempat_lahir(resultSet.getString("tempat_lahir"));
+                guru.setTanggal_lahir(resultSet.getDate("tanggal_lahir"));
+                guru.setJenis_kelamin(resultSet.getString("jenis_kelamin"));
+                guru.setAgama(resultSet.getString("agama"));
+                guru.setPendidikan_terakhir(resultSet.getString("pendidikan_terakhir"));
+                guru.setTelp(resultSet.getString("telp"));
+                guru.setStatus(resultSet.getString("status"));
+                guru.setAlamat(resultSet.getString("alamat"));
+                guru.setPhoto(resultSet.getString("photo"));
+                guru.setId(resultSet.getInt("id"));
+                guru.setWaliKelas(resultSet.getString("wali_kelas"));
+                guru.setNm_kelas(resultSet.getString("nm_kelas"));
+                guru.setKd_mapel(resultSet.getString("kd_mapel"));
+                guru.setNm_mapel(resultSet.getString("nm_mapel"));
+                guru.setKd_kelas(resultSet.getString("kd_kelas"));
+               
+                
+                list.add(guru);
+                
+            }
+            
+            return list;
+            
+        }catch(SQLException e){
+            return list;
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch(SQLException ex){
+                }
+            }
+        }
+         
+     }
     
     public Guru SelectImgByCode(String NIS){
         

@@ -93,6 +93,35 @@ public class PanelGuru extends javax.swing.JPanel {
         
     }
     
+    public void LoadGuruByFlag(int fg){
+        
+        new SwingWorker<List<Guru>, Object>(){
+
+            @Override
+            protected List<Guru> doInBackground() throws Exception {
+                
+                Thread.sleep(1000);
+                List<Guru> list = service.SelectAllByFlag(fg);
+
+                return list;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    tableModel.clear();
+                    for(Guru jsb : get()){
+                    tableModel.add(jsb);
+                }
+                } catch (InterruptedException | ExecutionException ex) {
+                    Logger.getLogger(PanelGuru.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+  
+        }.execute();
+        
+    }
+    
     private void loadImageGuru(){
         int aBlob;
         if(guru.getPhoto() != null){
@@ -140,6 +169,8 @@ public class PanelGuru extends javax.swing.JPanel {
         btnHapus = new javax.swing.JButton();
         panel_Gambar2 = new MI_MAK.siswa.Panel_Gambar();
         labelPhoto = new javax.swing.JLabel();
+        comboStatus = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setOpaque(false);
 
@@ -210,6 +241,17 @@ public class PanelGuru extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        comboStatus.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Active", "Non Active" }));
+        comboStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboStatusActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jLabel1.setText("Status :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,7 +265,12 @@ public class PanelGuru extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtCari))
+                                .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel_Gambar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -235,16 +282,18 @@ public class PanelGuru extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1)
+                    .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(panel_Gambar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(37, 37, 37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -295,7 +344,6 @@ public class PanelGuru extends javax.swing.JPanel {
             int index = tableGuru.convertRowIndexToModel(tableGuru.getSelectedRow());
             Guru kls = tableModel.get(index);
              service.delete(kls.getId());
-             guru.setFlag(0);
             LoadGuru();
         }
         
@@ -304,12 +352,30 @@ public class PanelGuru extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
+    private void comboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboStatusActionPerformed
+        // TODO add your handling code here:
+        switch (comboStatus.getSelectedIndex()) {
+            case 0:
+            LoadGuru();
+            break;
+            case 1:
+            LoadGuruByFlag(1);
+            break;
+            default:
+            LoadGuruByFlag(0);
+            break;
+        }
+
+    }//GEN-LAST:event_comboStatusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnLihat;
     private javax.swing.JButton btnTambahGuru;
     private javax.swing.JButton btnUbahGuru;
+    private javax.swing.JComboBox<String> comboStatus;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

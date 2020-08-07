@@ -5,6 +5,7 @@
  */
 package MI_MAK.dao;
 
+import MI_MAK.widget.FlagCellRendererTable;
 import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.io.Serializable;
 import java.sql.Timestamp;

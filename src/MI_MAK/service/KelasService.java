@@ -131,6 +131,13 @@ public class KelasService {
             }catch(SQLException e){
                     
                     
+            }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
         }
             
             
@@ -143,7 +150,7 @@ public class KelasService {
         
         List<Kelas> list = new ArrayList<>();
      try{
-             String sql = "SELECT * FROM tbl_kelas where flag = 1";
+             String sql = "SELECT * FROM tbl_kelas";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
@@ -181,6 +188,51 @@ public class KelasService {
          
      }   
     
+    public List<Kelas> SelectAllByFlag(int fg){
+        
+        PreparedStatement prepare = null;
+        ResultSet resultSet = null;
+        
+        List<Kelas> list = new ArrayList<>();
+     try{
+             String sql = "SELECT * FROM tbl_kelas where flag = "+fg+"";
+            prepare = koneksi.prepareStatement(sql);
+            
+            resultSet = prepare.executeQuery();
+            
+            while(resultSet.next()){
+                Kelas kelas = new Kelas();
+                kelas.setKd_kelas(resultSet.getString("kd_kelas"));
+                kelas.setNama_kelas(resultSet.getString("nama_kelas"));
+                kelas.setId(resultSet.getInt("id"));
+               
+                
+                
+                list.add(kelas);
+                
+            }
+            
+            return list;
+            
+        }catch(SQLException e){
+            return list;
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch(SQLException ex){
+                }
+            }
+        }
+         
+     }
+    
     public List<Kelas> selectKelas(){
         PreparedStatement prepare = null;
         ResultSet resultSet = null;
@@ -188,7 +240,7 @@ public class KelasService {
         List<Kelas> list = new ArrayList<>();
         
         try{
-            String sql = "select distinct kd_kelas, nama_kelas from tbl_kelas order by nama_kelas ASC";
+            String sql = "select distinct kd_kelas, nama_kelas from tbl_kelas where flag = 1 order by nama_kelas ASC";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
@@ -240,6 +292,7 @@ public class KelasService {
             String sql = "select kd_kelas, nama_kelas from tbl_kelas "
                     + "WHERE kd_kelas not in ( "
                     + "SELECT kd_kelas FROM tbl_guru where kd_kelas is not null) "
+                    + "AND flag = 1 "
                     + "order by nama_kelas ASC";
             prepare = koneksi.prepareStatement(sql);
             
@@ -335,7 +388,8 @@ public class KelasService {
             String sql = "select distinct mp.kd_kelas, mp.nama_kelas from tbl_kelas mp " +
                          "WHERE mp.kd_kelas not in ( " +
                          "  select kd_kelas from vcarikelasnila where jmlhMapel = totalMapel "+
-                         "  and semester = '"+smtr+"' and tahun_ajaran = '"+thn+"')";
+                         "  and semester = '"+smtr+"' and tahun_ajaran = '"+thn+"') "
+                    + "And mp.flag = 1";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();

@@ -183,6 +183,71 @@ public class SiswaService {
             }catch(SQLException e){
                     
                     
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
+        }
+         
+     }
+     
+     public List<Siswa> selectAllByFlag(int fg){
+         
+        PreparedStatement prepare = null;
+        ResultSet resultSet = null;
+        
+        List<Siswa> list = new ArrayList<>();
+        
+        try{
+             String sql = "SELECT * FROM tbl_siswa where flag = "+fg+"";
+            prepare = koneksi.prepareStatement(sql);
+            
+            resultSet = prepare.executeQuery();
+            
+            while(resultSet.next()){
+                Siswa siswa = new Siswa();
+                siswa.setAgama(resultSet.getString("agama"));
+                siswa.setAlamat_siswa(resultSet.getString("alamat_siswa"));
+                siswa.setJenis_kelamin(resultSet.getString("jenis_kelamin"));
+                siswa.setKj_ayah(resultSet.getString("kj_ayah"));
+                siswa.setKj_ibu(resultSet.getString("kj_ibu"));
+                siswa.setNama_ayah(resultSet.getString("nama_ayah"));
+                siswa.setNama_ibu(resultSet.getString("nama_ibu"));
+                siswa.setNama_siswa(resultSet.getString("nama_siswa"));
+                siswa.setNomor_induk(resultSet.getString("nomor_induk"));
+                siswa.setPhoto(resultSet.getString("photo"));
+                siswa.setTahun_masuk(resultSet.getInt("tahun_masuk"));
+                siswa.setTanggal_lahir(resultSet.getDate("tanggal_lahir"));
+                siswa.setTelp_wali(resultSet.getString("telp_wali"));
+                siswa.setTempat_lahir(resultSet.getString("tempat_lahir"));
+                siswa.setId(resultSet.getInt("id"));
+                siswa.setNama_kelas(resultSet.getString("nama_kelas"));
+                siswa.setKode_kelas(resultSet.getString("kode_kelas"));
+                
+                list.add(siswa);
+                
+            }
+            
+            return list;
+            
+        }catch(SQLException e){
+            return list;
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                }
+            }
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch(SQLException ex){
+                }
+            }
         }
          
      }
@@ -195,7 +260,7 @@ public class SiswaService {
         List<Siswa> list = new ArrayList<>();
         
         try{
-             String sql = "SELECT * FROM tbl_siswa where flag = 1";
+             String sql = "SELECT * FROM tbl_siswa";
             prepare = koneksi.prepareStatement(sql);
             
             resultSet = prepare.executeQuery();
