@@ -17,6 +17,9 @@ import MI_MAK.service.SiswaService;
 import MI_MAK.widget.ProgressbarLoading;
 import java.awt.Window;
 import java.beans.PropertyChangeEvent;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Calendar;
 import java.util.Date;
@@ -26,6 +29,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -36,6 +40,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 /**
@@ -53,7 +58,7 @@ public class PanelLaporan extends javax.swing.JPanel {
     private final String varPathDataKelas = "/MI_MAK/laporanReport/ReportDataKelas.jrxml";
     private final String varPathJdwlNgajar = "/MI_MAK/laporanReport/ReportJadwalMengajarGroup.jrxml";
     private final String varPathNilai = "/MI_MAK/laporanReport/ReportNilai.jrxml";
-    private final String varPathNilaiRekap = "/MI_MAK/laporanReport/ReportNilaiRekap.jrxml";
+    private final String varPathNilaiRekap = "/MI_MAK/laporanReport/ReportNilaiRekap_new.jrxml";
     private final String varPathAbsensi = "/MI_MAK/laporanReport/ReportDataAbsen.jrxml";
     private final String varPathNilaiRapor = "/MI_MAK/laporanReport/ReportNilaiRapor.jrxml";
     public PanelLaporan() {
@@ -129,7 +134,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         comboMapelGuru.removeAllItems();
         comboMapelGuru.addItem("All");
         comboMapelNilai.removeAllItems();
-        comboMapelNilai.addItem("");
+        comboMapelNilai.addItem("All");
         comboMapelMapel.removeAllItems();
         comboMapelMapel.addItem("All");
         comboMapelNgajar.removeAllItems();
@@ -1125,9 +1130,17 @@ public class PanelLaporan extends javax.swing.JPanel {
                 }
             }
         
+        InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+               
+        
         Map<String, Object> param = new HashMap<>();
         param.put("kd_kelas", varKdKelas);
         param.put("kd_siswa", varKdSiswa);
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if(rbAllSiswa.isSelected()==true){
             param.put("thn_masuk", "");
         }else{
@@ -1215,10 +1228,18 @@ public class PanelLaporan extends javax.swing.JPanel {
         }
         
         
+        InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        
          Map<String, Object> param = new HashMap<>();
         param.put("kd_guru", varKdGuru);
         param.put("kd_kelas", varKdWaliKelas);
         param.put("kd_mapel", varKdMapel);
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         System.out.println("kd_guru guru :"+varKdGuru);
         System.out.println("kd_kelas guru :"+varKdWaliKelas);
         System.out.println("mapel guru siswa :"+varKdMapel);
@@ -1358,9 +1379,16 @@ public class PanelLaporan extends javax.swing.JPanel {
         }
         
         
+        
          Map<String, Object> param = new HashMap<>();
         param.put("kd_mapel", varKdMapel);
         System.out.println("mapel mapel :"+varKdMapel);
+        InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
@@ -1471,7 +1499,12 @@ public class PanelLaporan extends javax.swing.JPanel {
          Map<String, Object> param = new HashMap<>();
         param.put("kd_kelas", varKdKls);
         System.out.println("kelas kelas :"+varKdKls);
-        
+        InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
             
@@ -1629,7 +1662,12 @@ public class PanelLaporan extends javax.swing.JPanel {
         System.out.println("guru ngajar :"+varGuru);
         System.out.println("hari ngajar :"+varHari);
         System.out.println("mapel ngajar :"+varMapel);
-        
+        InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
             
@@ -1685,7 +1723,12 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("smester", comboSmstrNilai.getSelectedItem().toString());
             System.out.println("kd_mapel Nilai :"+lblKdMapelNilai.getText());
             System.out.println("kd_kelas Nilai :"+lblKdKelasNilai.getText());
-
+            InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+            try {
+                param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+            } catch (JRException | IOException ex) {
+                Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
 
@@ -1739,7 +1782,12 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("kd_kelas", varKdKelas);
             param.put("kd_siswa", varKdSiswa);
             
-
+            InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
             final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
 
@@ -1924,7 +1972,12 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("smester", comboSmstrNilai.getSelectedItem().toString());
             System.out.println("kd_mapel Nilai :"+lblKdMapelNilai.getText());
             System.out.println("kd_kelas Nilai :"+lblKdKelasNilai.getText());
-
+        InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
             final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
 
@@ -1977,6 +2030,13 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("thn_ajaran", thn1+"/"+thn2);
             param.put("smester", comboSmstrNilai.getSelectedItem().toString());
 
+            InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
+        try {
+            param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
+        } catch (JRException | IOException ex) {
+            Logger.getLogger(PanelLaporan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
 
             final SwingWorker<JasperPrint, String> worker = new SwingWorker<JasperPrint, String>(){
 

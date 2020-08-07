@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="930" pageHeight="750" orientation="Landscape" columnWidth="910" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="970" pageHeight="750" orientation="Landscape" columnWidth="950" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="34"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="kd_siswa" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -12,6 +12,7 @@
 	<parameter name="thn_masuk" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo" class="java.awt.Image" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT
      tbl_siswa.`id` AS tbl_siswa_id,
@@ -60,14 +61,25 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="39" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="6" y="0" width="503" height="29" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="0" y="0" width="950" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
 					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Siswa di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="867" y="2" width="83" height="39" uuid="ff22291d-3572-42a6-b384-badc0e68c550"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -177,7 +189,7 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="693" y="0" width="53" height="23" uuid="99ccfe9c-6cf2-4e6b-9b65-ef930f9c025c"/>
+				<reportElement x="693" y="0" width="89" height="23" uuid="99ccfe9c-6cf2-4e6b-9b65-ef930f9c025c"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -190,7 +202,7 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 				<text><![CDATA[Kelas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="746" y="0" width="81" height="23" uuid="72202495-7116-471d-a8d7-a7ad68002f66"/>
+				<reportElement x="782" y="0" width="85" height="23" uuid="72202495-7116-471d-a8d7-a7ad68002f66"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -203,7 +215,7 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 				<text><![CDATA[Nama Wali]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="827" y="0" width="83" height="23" uuid="64b9eca2-38db-4daa-89a2-9149ca3f5e68"/>
+				<reportElement x="867" y="0" width="83" height="23" uuid="64b9eca2-38db-4daa-89a2-9149ca3f5e68"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -337,7 +349,7 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_siswa_tanggal_lahir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="693" y="0" width="53" height="31" uuid="9f28beee-c5c4-4a07-ba2d-f9fe032304dd"/>
+				<reportElement x="693" y="0" width="89" height="31" uuid="9f28beee-c5c4-4a07-ba2d-f9fe032304dd"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -350,7 +362,7 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_siswa_nama_kelas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="827" y="0" width="83" height="31" uuid="5a4635d5-cd27-4711-ab14-75f03c412536"/>
+				<reportElement x="867" y="0" width="83" height="31" uuid="5a4635d5-cd27-4711-ab14-75f03c412536"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -376,7 +388,7 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="746" y="0" width="81" height="31" uuid="b4193a07-499e-4e0f-8cdd-b7786be56fa4"/>
+				<reportElement x="782" y="0" width="85" height="31" uuid="b4193a07-499e-4e0f-8cdd-b7786be56fa4"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -390,11 +402,23 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="910" y="0" width="39" height="20" forecolor="#000000" uuid="dd86b1f9-5dc0-4b94-9748-c94df15ddf97"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="859" y="0" width="51" height="20" forecolor="#000000" uuid="8eb4e543-45d5-4c5c-aa6b-71bb0b919a5b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

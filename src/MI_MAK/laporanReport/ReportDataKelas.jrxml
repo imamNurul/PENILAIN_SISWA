@@ -6,6 +6,7 @@
 	<parameter name="kd_kelas" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo" class="java.awt.Image" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT
      kls.id,
@@ -37,14 +38,25 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="39" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="6" y="0" width="474" height="29" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="0" y="0" width="480" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
 					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Kelas di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="397" y="0" width="83" height="39" uuid="ab05cd19-68f4-4ad6-8573-fd4125c68568"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -159,11 +171,23 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="437" y="0" width="40" height="20" forecolor="#000000" uuid="0d17146b-d224-4d47-bd73-bad4fc04b3a2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="0" width="51" height="20" forecolor="#000000" uuid="26f18aee-4723-40b1-883d-98ab03378183"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

@@ -7,6 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="kd_siswa" class="java.lang.String"/>
+	<parameter name="logo" class="java.awt.Image" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT
      tbl_absensi.`kd_absen` AS tbl_absensi_kd_absen,
@@ -54,14 +55,24 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="39" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="6" y="0" width="474" height="29" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="0" y="0" width="820" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
 					<font fontName="Calibri" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Absensi Siswa di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="737" y="0" width="83" height="43" uuid="0d79c012-f43d-45f5-af6b-557b22bfe3ce"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -358,11 +369,23 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="780" y="0" width="40" height="20" forecolor="#000000" uuid="43c888b0-19c8-448e-aa23-5182c284d1d5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="729" y="0" width="51" height="20" forecolor="#000000" uuid="25733e01-37dc-4c69-b169-a6a5bfea202a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

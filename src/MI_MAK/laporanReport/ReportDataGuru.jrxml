@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="1035" pageHeight="750" orientation="Landscape" columnWidth="1015" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="99"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="kd_guru" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -12,6 +12,7 @@
 	<parameter name="kd_mapel" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo" class="java.awt.Image" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT
      tbl_guru.`id` AS tbl_guru_id,
@@ -60,14 +61,25 @@ tbl_guru.`kd_mapel` LIKE '%$P!{kd_mapel}%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="39" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="6" y="0" width="503" height="29" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="0" y="0" width="1015" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
 					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph leftIndent="2"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Guru di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="932" y="0" width="83" height="43" uuid="56351fa5-a22d-4de9-99ad-c4ebd28427e4"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
@@ -416,11 +428,23 @@ tbl_guru.`kd_mapel` LIKE '%$P!{kd_mapel}%']]>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="975" y="0" width="40" height="20" forecolor="#000000" uuid="7821cc0f-872f-4fec-9877-76a75622c713"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="924" y="0" width="51" height="20" forecolor="#000000" uuid="ccb99743-1f18-43f7-bd64-b5aa06a9511d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

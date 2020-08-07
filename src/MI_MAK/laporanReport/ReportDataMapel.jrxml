@@ -6,6 +6,7 @@
 	<parameter name="kd_mapel" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="logo" class="java.awt.Image" isForPrompting="false"/>
 	<queryString>
 		<![CDATA[SELECT
      tbl_mapel.`id` AS tbl_mapel_id,
@@ -24,20 +25,31 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="39" splitType="Stretch">
+		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="6" y="0" width="474" height="29" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<reportElement x="0" y="0" width="480" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Mata Pelajaran di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
+			<image>
+				<reportElement x="397" y="0" width="83" height="39" uuid="ac4d816d-5373-434a-94b1-7b0c98a4b031"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement x="29" y="0" width="101" height="23" uuid="347fbb05-597d-49b1-b187-d1cb94a2a72d"/>
+				<reportElement x="29" y="0" width="131" height="23" uuid="347fbb05-597d-49b1-b187-d1cb94a2a72d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -50,7 +62,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<text><![CDATA[Kode Mata Pelajaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="130" y="0" width="153" height="23" uuid="462e9651-deb8-444e-bcdd-136e9876b3d3"/>
+				<reportElement x="160" y="0" width="183" height="23" uuid="462e9651-deb8-444e-bcdd-136e9876b3d3"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -63,7 +75,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<text><![CDATA[Mata Pelajaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="283" y="0" width="138" height="23" uuid="d7462414-6e29-45a7-b420-47ef7a61b455"/>
+				<reportElement x="343" y="0" width="137" height="23" uuid="d7462414-6e29-45a7-b420-47ef7a61b455"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -106,7 +118,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="29" y="0" width="101" height="31" uuid="ae58397a-bbd6-42e1-b710-5935d637254d"/>
+				<reportElement x="29" y="0" width="131" height="31" uuid="ae58397a-bbd6-42e1-b710-5935d637254d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -119,7 +131,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_mapel_kd_mapel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="0" width="153" height="31" uuid="4769db42-9d77-406d-8302-74ce0d999b42"/>
+				<reportElement x="160" y="0" width="183" height="31" uuid="4769db42-9d77-406d-8302-74ce0d999b42"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -132,7 +144,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_mapel_nama_mapel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="283" y="0" width="138" height="31" uuid="7b2a91c3-9b43-4e35-b4d5-cc8bcea30f3d"/>
+				<reportElement x="343" y="0" width="137" height="31" uuid="7b2a91c3-9b43-4e35-b4d5-cc8bcea30f3d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -146,11 +158,23 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="20" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="439" y="0" width="39" height="20" forecolor="#000000" uuid="53c98ebb-2b4d-4d64-aa41-7869b394b6f3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="0" width="51" height="20" forecolor="#000000" uuid="b3b29d93-564d-48aa-9508-bd8b09b0fe92"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
