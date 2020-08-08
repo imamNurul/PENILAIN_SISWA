@@ -135,11 +135,11 @@ public class TambahMengajar extends javax.swing.JDialog {
         }
     }
     
-    protected String validateJadwalMengajar(String mapel, String kelas, String guru, String hari, String thn) {
+    protected String validateJadwalMengajar(String mapel, String kelas, String hari, String thn) {
         mengajar = null;
         try {
             String sql = "SELECT kode_mengajar FROM jdl_mengajar where kode_mapel = '"+mapel+"' AND kode_kelas = '"+kelas+"' "
-                    + "AND kode_guru = '"+guru+"' AND hari = '"+hari+"' AND tahunAjaran = '"+thn+"'";
+                    + "AND hari = '"+hari+"' AND tahunAjaran = '"+thn+"'";
             Statement st = koneksi.createStatement();
             ResultSet rs = st.executeQuery(sql);
           
@@ -489,7 +489,7 @@ public class TambahMengajar extends javax.swing.JDialog {
             
             
             
-            validateJadwalMengajar(labelMapel.getText(), labelKodeKelas.getText(), labelNIP.getText(), comboHari.getSelectedItem().toString(), thF+"/"+thT);
+            validateJadwalMengajar(labelMapel.getText(), labelKodeKelas.getText(), comboHari.getSelectedItem().toString(), thF+"/"+thT);
             
             if(mengajar != null){
                 System.out.println("");
@@ -522,19 +522,24 @@ public class TambahMengajar extends javax.swing.JDialog {
 
     private void comboKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboKelasActionPerformed
         // TODO add your handling code here:
-        
-        if(comboKelas.getSelectedItem().equals("Pilih")){
-            labelKodeKelas.setText("");
-        }else{
-            String lblKodeKls;
-            lblKodeKls = comboKelas.getSelectedItem().toString();
-            System.out.println("combo kelas: "+lblKodeKls);
-            String[] prt = lblKodeKls.split("-");
-            String varStrKode = prt[0];
-            String varStrNama = prt[1];
-            System.out.println("split kode: "+varStrKode);
-            System.out.println("split nama: "+varStrNama);
-            labelKodeKelas.setText(varStrKode);
+        switch (comboKelas.getSelectedIndex()) {
+            case -1:
+                labelKodeKelas.setText("");
+                break;
+            case 0:
+                labelKodeKelas.setText("");
+                break;
+            default:
+                String lblKodeKls;
+                lblKodeKls = comboKelas.getSelectedItem().toString();
+                System.out.println("combo kelas: "+lblKodeKls);
+                String[] prt = lblKodeKls.split("-");
+                String varStrKode = prt[0];
+                String varStrNama = prt[1];
+                System.out.println("split kode: "+varStrKode);
+                System.out.println("split nama: "+varStrNama);
+                labelKodeKelas.setText(varStrKode);
+                break;
         }
         
         
@@ -568,23 +573,27 @@ public class TambahMengajar extends javax.swing.JDialog {
 
     private void comboMapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMapelActionPerformed
         // TODO add your handling code here:
-        
-        if(comboMapel.getSelectedItem().equals("Pilih")){
-            labelMapel.setText("");
-            LoadGuruByMapelCombo("");
-        }else{
-            String lblKodeMapel;
-            lblKodeMapel = comboMapel.getSelectedItem().toString();
-            System.out.println("combo mapel: "+lblKodeMapel);
-            String[] prt = lblKodeMapel.split("-");
-            String varStrKode = prt[0];
-            String varStrNama = prt[1];
-            System.out.println("split kode: "+varStrKode);
-            System.out.println("split nama: "+varStrNama);
-            labelMapel.setText(varStrKode);
-            
-            LoadGuruByMapelCombo(labelMapel.getText());
-        
+        switch (comboMapel.getSelectedIndex()) {
+            case -1:
+                labelMapel.setText("");
+                LoadGuruByMapelCombo("");
+                break;
+            case 0:
+                labelMapel.setText("");
+                LoadGuruByMapelCombo("");
+                break;
+            default:
+                String lblKodeMapel;
+                lblKodeMapel = comboMapel.getSelectedItem().toString();
+                System.out.println("combo mapel: "+lblKodeMapel);
+                String[] prt = lblKodeMapel.split("-");
+                String varStrKode = prt[0];
+                String varStrNama = prt[1];
+                System.out.println("split kode: "+varStrKode);
+                System.out.println("split nama: "+varStrNama);
+                labelMapel.setText(varStrKode);
+                LoadGuruByMapelCombo(labelMapel.getText());
+                break;
         }
         
         

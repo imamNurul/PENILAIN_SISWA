@@ -577,7 +577,7 @@ public class TambahAbsen extends javax.swing.JDialog {
                 labelNmKelas.setText(sw.getNm_kelas());
                 
             }else{
-                
+                comboKelas.setSelectedItem("Pilih");
                 txtKodeSiswa.setText("");
                 txtNamaSiswa.setText("");
                 lblKodeKelas.setText("");

@@ -412,7 +412,7 @@ public class GuruService {
         
         try{
             String sql = "select distinct nip, nama_guru from tbl_guru "
-                    + "WHERE kd_mapel = '"+mapel+"' "
+                    + "WHERE kd_mapel = '"+mapel+"' AND flag = 1 "
                     + "order by nama_guru ASC";
             prepare = koneksi.prepareStatement(sql);
             

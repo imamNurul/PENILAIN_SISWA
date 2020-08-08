@@ -394,7 +394,7 @@ public class PenilaianService {
             String sql = "select ts.nomor_induk AS NIS, ts.nama_siswa, '' AS id_nilai, '' AS UH, "
                     + "'' AS UTS, '' AS UAS from tbl_siswa ts "
                     + "inner join tbl_kelas kl on kl.kd_kelas = ts.kode_kelas "
-                    + "WHERE kl.kd_kelas = ?";
+                    + "WHERE kl.kd_kelas = ? and ts.flag = 1";
 
             prepare = koneksi.prepareStatement(sql);
             prepare.setString(1, kls);

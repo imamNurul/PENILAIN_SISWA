@@ -369,7 +369,8 @@ public class SiswaService {
         
         try{
             
-            String sql = "SELECT kode_kelas, nama_kelas, nomor_induk, nama_siswa, jenis_kelamin, tahun_masuk FROM tbl_siswa WHERE kode_kelas = ?";
+            String sql = "SELECT kode_kelas, nama_kelas, nomor_induk, nama_siswa, jenis_kelamin, tahun_masuk "
+                    + "FROM tbl_siswa WHERE kode_kelas = ? and flag = 1";
 
             prepare = koneksi.prepareStatement(sql);
             prepare.setString(1, kls);
