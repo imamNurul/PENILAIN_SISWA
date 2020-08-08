@@ -26,6 +26,11 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelKelasName">
     </Component>
+    <Component class="javax.swing.JLabel" name="lblFlag">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel20"/>
+      </Properties>
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>

@@ -178,7 +178,6 @@ public class UbahKelas extends javax.swing.JDialog {
             kelas.setUpdatedby("Admin");
             kelas.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
             kelas.setKd_kelas(txtKodeKelas.getText());
-            kelas.setFlag(1);
             kelas.setNama_kelas(txtNamaKelas.getText());
             kelas.setId(Integer.parseInt(labelId.getText()));
             

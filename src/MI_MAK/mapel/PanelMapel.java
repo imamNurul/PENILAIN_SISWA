@@ -198,12 +198,13 @@ public class PanelMapel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
-                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(comboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,7 +219,7 @@ public class PanelMapel extends javax.swing.JPanel {
         TambahMapel tk = new TambahMapel();
         tk.tambahMapel();
         LoadMapel();
-        
+        comboStatus.setSelectedItem("All");
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
@@ -230,7 +231,7 @@ public class PanelMapel extends javax.swing.JPanel {
             UbahMapel ubah = new UbahMapel();
             ubah.ubahMapel(mp);
             LoadMapel();
-            
+            comboStatus.setSelectedItem("All");
         }else{
             JOptionPane.showMessageDialog(this, "silahkan seleksi satu baris");
         }
@@ -249,6 +250,7 @@ public class PanelMapel extends javax.swing.JPanel {
                     Mapel mp = tableModel.get(index);
                     service.delete(mp.getId());
                     LoadMapel();
+                    comboStatus.setSelectedItem("All");
             }
         }else{
             JOptionPane.showMessageDialog(this, "silakan seleksi satu baris");

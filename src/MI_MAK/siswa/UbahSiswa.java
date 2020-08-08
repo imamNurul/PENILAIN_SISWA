@@ -708,7 +708,6 @@ public class UbahSiswa extends javax.swing.JDialog {
             siswa.setAlamat_siswa(txtAlamat.getText());
             siswa.setUpdatedby("Admin");
             siswa.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
-            siswa.setFlag(1);
             
             if(rbLaki.isSelected()== true){
                 siswa.setJenis_kelamin("L");

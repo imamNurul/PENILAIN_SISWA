@@ -9,10 +9,17 @@ import MI_MAK.dao.Guru;
 import MI_MAK.dao.Kelas;
 import MI_MAK.dao.Mapel;
 import MI_MAK.dao.Mengajar;
+import MI_MAK.db.DatabaseUtilitas;
 import MI_MAK.service.GuruService;
 import MI_MAK.service.KelasService;
 import MI_MAK.service.MapelService;
 import MI_MAK.service.MengajarService;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -25,14 +32,17 @@ import javax.swing.JOptionPane;
 public class UbahMengajar extends javax.swing.JDialog {
 
     private Mengajar mengajar;
+    private String ajar;
     private int thnFrom;
     private int thnTo;
+    private Connection koneksi;
     
     private String varThnFrom;
     private String varThnTo;
     
     public UbahMengajar() {
         setModal(true);
+        koneksi = DatabaseUtilitas.getkoneksi();
         initComponents();
         
         setGlassPane(jGlassPane1);
@@ -45,9 +55,8 @@ public class UbahMengajar extends javax.swing.JDialog {
     public Mengajar ubahMengajar(Mengajar param){
        
         
-       // LoadGuruCombo();
-        //LoadKelasCombo();
-        //LoadMapelCombo();
+       LoadKelasCombo();
+        LoadMapelCombo();
         System.out.println("combo Mapel: "+param.getKd_mapel()+" - "+param.getNm_mapel());
         System.out.println("combo guru: "+param.getKd_guru()+" - "+param.getNm_guru());
         System.out.println("combo kelas: "+param.getKd_kelas()+" - "+param.getNm_kelas());
@@ -120,6 +129,36 @@ public class UbahMengajar extends javax.swing.JDialog {
             comboMapel.addItem(mp);
         });
     }
+    
+    public void LoadGuruByMapelCombo(String id){
+        GuruService vs = new GuruService();
+        List<Guru> list =  vs.selectGuruByMapel(id);
+        comboGuru.removeAllItems();
+        comboGuru.addItem("Pilih");
+        list.stream().forEach((sw) -> {
+            comboGuru.addItem(sw);
+            System.out.println("load Guru: "+sw);
+        });
+    }
+    
+    protected String validateJadwalMengajar(String mapel, String kelas, String hari, Time jm, String thn) {
+        ajar = null;
+        try {
+            String sql = "SELECT kode_mengajar FROM jdl_mengajar where kode_mapel = '"+mapel+"' AND kode_kelas = '"+kelas+"' "
+                    + "AND hari = '"+hari+"' AND jamMulai = '"+jm+"' AND tahunAjaran = '"+thn+"'";
+            Statement st = koneksi.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+          
+            while (rs.next()) {
+                ajar = rs.getString("kode_mengajar");
+                
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "validate NIP gagal" + e);
+        }
+        
+        return ajar;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,6 +178,7 @@ public class UbahMengajar extends javax.swing.JDialog {
         labelNipName = new javax.swing.JLabel();
         labelMapelName = new javax.swing.JLabel();
         labelKelasName = new javax.swing.JLabel();
+        lblFlag = new javax.swing.JLabel();
         panelImageBackground1 = new MI_MAK.widget.PanelImageBackground();
         jLabel1 = new javax.swing.JLabel();
         txtKodeMengajar = new javax.swing.JTextField();
@@ -171,6 +211,8 @@ public class UbahMengajar extends javax.swing.JDialog {
         ChooseThnAjaranFrom = new com.toedter.calendar.JYearChooser();
         jLabel19 = new javax.swing.JLabel();
         ChooseThnAjaranTo = new com.toedter.calendar.JYearChooser();
+
+        lblFlag.setText("jLabel20");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -454,28 +496,36 @@ public class UbahMengajar extends javax.swing.JDialog {
             messageComponent1.showWarning("Jam Selesai kosong");
         }else{
             
-            mengajar = new Mengajar();
-            mengajar.setUpdatedby("Admin");
-            mengajar.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
-            mengajar.setFlag(1);
-            mengajar.setKd_mapel(labelMapel.getText());
-            mengajar.setKd_ajar(txtKodeMengajar.getText());
-            mengajar.setKd_guru(labelNIP.getText());
-            mengajar.setHari(comboHari.getSelectedItem().toString());
-            mengajar.setJamMulai(new java.sql.Time(jamMulai.getValue().hashCode()));
-            mengajar.setJamSelesai(new java.sql.Time(jamSelesai.getValue().hashCode()));
-            mengajar.setKd_kelas(labelKodeKelas.getText());
-            
-            String thF = String.valueOf(ChooseThnAjaranFrom.getValue());
+             String thF = String.valueOf(ChooseThnAjaranFrom.getValue());
             String thT = String.valueOf(ChooseThnAjaranTo.getValue());
             
-            mengajar.setTahunAjaran(thF+"/"+thT);
-            mengajar.setId(Integer.parseInt(labelId.getText()));
+            validateJadwalMengajar(labelMapel.getText(), labelKodeKelas.getText(), 
+                                    comboHari.getSelectedItem().toString(), new java.sql.Time(jamMulai.getValue().hashCode()), thF+"/"+thT);
             
             
-            MengajarService service = new MengajarService();
-            service.update(mengajar);
-            dispose();
+             if(mengajar != null){
+                System.out.println("");
+                messageComponent1.setMessageFont(new Font("Calibri", Font.BOLD, 14));
+                messageComponent1.showWarning("Jadwal Mengajar sudah ada dengan kode:"+mengajar, 6700);
+            }else{
+                Mengajar mj = new Mengajar();
+                mj.setId(Integer.parseInt(labelId.getText()));
+                mj.setUpdatedby("Admin");
+                mj.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
+                mj.setKd_mapel(labelMapel.getText());
+                mj.setKd_ajar(txtKodeMengajar.getText());
+                mj.setKd_guru(labelNIP.getText());
+                mj.setHari(comboHari.getSelectedItem().toString());
+                mj.setJamMulai(new java.sql.Time(jamMulai.getValue().hashCode()));
+                mj.setJamSelesai(new java.sql.Time(jamSelesai.getValue().hashCode()));
+                mj.setKd_kelas(labelKodeKelas.getText());
+                mj.setTahunAjaran(thF+"/"+thT);
+
+
+                MengajarService service = new MengajarService();
+                service.update(mj);
+                dispose();
+            }
         }
         
     }//GEN-LAST:event_btnSimpanActionPerformed
@@ -483,41 +533,77 @@ public class UbahMengajar extends javax.swing.JDialog {
     private void comboKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboKelasActionPerformed
         // TODO add your handling code here:
         
-        String lblKodeKls;
-        lblKodeKls = comboKelas.getSelectedItem().toString();
-        System.out.println("combo kelas: "+lblKodeKls);
-        String[] prt = lblKodeKls.split("-");
-        String varStrKode = prt[0];
-        String varStrNama = prt[1];
-        System.out.println("split: "+varStrKode+" - "+varStrNama);
-        labelKodeKelas.setText(varStrKode);
+        switch (comboKelas.getSelectedIndex()) {
+            case -1:
+                labelKodeKelas.setText("");
+                break;
+            case 0:
+                labelKodeKelas.setText("");
+                break;
+            default:
+                String lblKodeKls;
+                lblKodeKls = comboKelas.getSelectedItem().toString();
+                System.out.println("combo kelas: "+lblKodeKls);
+                String[] prt = lblKodeKls.split("-");
+                String varStrKode = prt[0];
+                String varStrNama = prt[1];
+                System.out.println("split kode: "+varStrKode);
+                System.out.println("split nama: "+varStrNama);
+                labelKodeKelas.setText(varStrKode);
+                break;
+        }
         
     }//GEN-LAST:event_comboKelasActionPerformed
 
     private void comboGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGuruActionPerformed
         // TODO add your handling code here:
-        String lblKodeGuru;
-        lblKodeGuru = comboGuru.getSelectedItem().toString();
-        System.out.println("combo guru: "+lblKodeGuru);
-        String[] prt = lblKodeGuru.split("-");
-        String varStrKode = prt[0];
-        String varStrNama = prt[1];
-        System.out.println("split: "+varStrKode+" - "+varStrNama);
-        labelNIP.setText(varStrKode);
+        switch (comboGuru.getSelectedIndex()) {
+            case -1:
+                labelNIP.setText("");
+                break;
+            case 0:
+                labelNIP.setText("");
+                break;
+            default:
+                String lblKodeGuru;
+                lblKodeGuru = comboGuru.getSelectedItem().toString();
+                System.out.println("combo guru: "+lblKodeGuru);
+                String[] prt = lblKodeGuru.split("-");
+                String varStrKode = prt[0];
+                String varStrNama = prt[1];
+                System.out.println("split kode: "+varStrKode);
+                System.out.println("split nama: "+varStrNama);
+                labelNIP.setText(varStrKode);
+                break;
+        }
         
     }//GEN-LAST:event_comboGuruActionPerformed
 
     private void comboMapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMapelActionPerformed
         // TODO add your handling code here:
         
-        String lblKodeMapel;
-        lblKodeMapel = comboMapel.getSelectedItem().toString();
-        System.out.println("combo mapel: "+lblKodeMapel);
-        String[] prt = lblKodeMapel.split("-");
-        String varStrKode = prt[0];
-        String varStrNama = prt[1];
-        System.out.println("split: "+varStrKode+" - "+varStrNama);
-        labelMapel.setText(varStrKode);
+        switch (comboMapel.getSelectedIndex()) {
+            case -1:
+                labelMapel.setText("");
+                LoadGuruByMapelCombo("");
+                break;
+            case 0:
+                labelMapel.setText("");
+                LoadGuruByMapelCombo("");
+                break;
+            default:
+                String lblKodeMapel;
+                lblKodeMapel = comboMapel.getSelectedItem().toString();
+                System.out.println("combo mapel: "+lblKodeMapel);
+                String[] prt = lblKodeMapel.split("-");
+                String varStrKode = prt[0];
+                String varStrNama = prt[1];
+                System.out.println("split kode: "+varStrKode);
+                System.out.println("split nama: "+varStrNama);
+                labelMapel.setText(varStrKode);
+                LoadGuruByMapelCombo(labelMapel.getText());
+                break;
+        }
         
     }//GEN-LAST:event_comboMapelActionPerformed
 
@@ -561,6 +647,7 @@ public class UbahMengajar extends javax.swing.JDialog {
     private javax.swing.JLabel labelMapelName;
     private javax.swing.JLabel labelNIP;
     private javax.swing.JLabel labelNipName;
+    private javax.swing.JLabel lblFlag;
     private com.stripbandunk.jglasspane.component.MessageComponent messageComponent1;
     private MI_MAK.widget.PanelImageBackground panelImageBackground1;
     private javax.swing.JTextField txtKodeMengajar;

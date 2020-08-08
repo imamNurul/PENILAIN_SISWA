@@ -212,7 +212,6 @@ public class UbahMapel extends javax.swing.JDialog {
             mapel = new Mapel();
             mapel.setUpdatedby("Admin");
             mapel.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
-            mapel.setFlag(1);
             mapel.setKd_mapel(txtKodeMapel.getText());
             mapel.setNama_mapel(txtNamaMapel.getText());
             mapel.setKeterangan(txtKet.getText());

@@ -315,7 +315,7 @@ public class PanelSiswa extends javax.swing.JPanel {
             us.ubahSiswa(sw, (ImageIcon) labelPhoto.getIcon());
 
             LoadSiswa();
-
+            comboStatus.setSelectedItem("All");
         }else{
             JOptionPane.showMessageDialog(this, "silahkan seleksi satu baris");
         }
@@ -329,7 +329,7 @@ public class PanelSiswa extends javax.swing.JPanel {
         tbh.tambahSiswa();
         tbh.LoadKelasCombo();
         LoadSiswa();
-
+        comboStatus.setSelectedItem("All");
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void txtCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyPressed
@@ -356,6 +356,7 @@ public class PanelSiswa extends javax.swing.JPanel {
             Siswa kls = tableModel.get(index);
              service.delete(kls.getId());
             LoadSiswa();
+            comboStatus.setSelectedItem("All");
         }
         
         }else{

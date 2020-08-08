@@ -735,7 +735,7 @@ public class UbahGuru extends javax.swing.JDialog {
             guru.setUpdatedby("Admin");
             guru.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
             guru.setTanggal_lahir(new java.sql.Date(dateLahir.getDate().getTime()));
-            guru.setFlag(1);
+           
             
             if(rbLaki.isSelected()== true){
                 guru.setJenis_kelamin("L");

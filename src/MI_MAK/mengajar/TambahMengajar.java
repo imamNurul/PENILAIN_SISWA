@@ -19,6 +19,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -135,11 +136,11 @@ public class TambahMengajar extends javax.swing.JDialog {
         }
     }
     
-    protected String validateJadwalMengajar(String mapel, String kelas, String hari, String thn) {
+    protected String validateJadwalMengajar(String mapel, String kelas, String hari, Time jm, String thn) {
         mengajar = null;
         try {
             String sql = "SELECT kode_mengajar FROM jdl_mengajar where kode_mapel = '"+mapel+"' AND kode_kelas = '"+kelas+"' "
-                    + "AND hari = '"+hari+"' AND tahunAjaran = '"+thn+"'";
+                    + "AND hari = '"+hari+"' AND jamMulai = '"+jm+"' AND tahunAjaran = '"+thn+"'";
             Statement st = koneksi.createStatement();
             ResultSet rs = st.executeQuery(sql);
           
@@ -489,7 +490,8 @@ public class TambahMengajar extends javax.swing.JDialog {
             
             
             
-            validateJadwalMengajar(labelMapel.getText(), labelKodeKelas.getText(), comboHari.getSelectedItem().toString(), thF+"/"+thT);
+            validateJadwalMengajar(labelMapel.getText(), labelKodeKelas.getText(), 
+                                    comboHari.getSelectedItem().toString(), new java.sql.Time(jamMulai.getValue().hashCode()), thF+"/"+thT);
             
             if(mengajar != null){
                 System.out.println("");
@@ -548,23 +550,24 @@ public class TambahMengajar extends javax.swing.JDialog {
 
     private void comboGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGuruActionPerformed
         // TODO add your handling code here:
-        
-        if(comboGuru.getSelectedIndex() == -1){
-            labelNIP.setText("");
-        }else if(comboGuru.getSelectedIndex() == 0){
-            labelNIP.setText("");
-        }else if(comboGuru.getSelectedItem().equals("Pilih")){
-            labelNIP.setText("");
-        }else{
-            String lblKodeGuru;
-            lblKodeGuru = comboGuru.getSelectedItem().toString();
-            System.out.println("combo guru: "+lblKodeGuru);
-            String[] prt = lblKodeGuru.split("-");
-            String varStrKode = prt[0];
-            String varStrNama = prt[1];
-            System.out.println("split kode: "+varStrKode);
-            System.out.println("split nama: "+varStrNama);
-            labelNIP.setText(varStrKode);
+        switch (comboGuru.getSelectedIndex()) {
+            case -1:
+                labelNIP.setText("");
+                break;
+            case 0:
+                labelNIP.setText("");
+                break;
+            default:
+                String lblKodeGuru;
+                lblKodeGuru = comboGuru.getSelectedItem().toString();
+                System.out.println("combo guru: "+lblKodeGuru);
+                String[] prt = lblKodeGuru.split("-");
+                String varStrKode = prt[0];
+                String varStrNama = prt[1];
+                System.out.println("split kode: "+varStrKode);
+                System.out.println("split nama: "+varStrNama);
+                labelNIP.setText(varStrKode);
+                break;
         }
         
         

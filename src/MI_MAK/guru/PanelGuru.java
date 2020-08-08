@@ -318,6 +318,7 @@ public class PanelGuru extends javax.swing.JPanel {
         TambahGuru tbh = new TambahGuru();
         tbh.tambahGuru();
         LoadGuru();
+        comboStatus.setSelectedItem("All");
 
     }//GEN-LAST:event_btnTambahGuruActionPerformed
 
@@ -330,7 +331,7 @@ public class PanelGuru extends javax.swing.JPanel {
             UbahGuru ubh = new UbahGuru();
             ubh.ubahGuru(sw, (ImageIcon) labelPhoto.getIcon());
             LoadGuru();
-
+            comboStatus.setSelectedItem("All");
         }else{
             JOptionPane.showMessageDialog(this, "silahkan seleksi satu baris");
         }
@@ -345,6 +346,7 @@ public class PanelGuru extends javax.swing.JPanel {
             Guru kls = tableModel.get(index);
              service.delete(kls.getId());
             LoadGuru();
+            comboStatus.setSelectedItem("All");
         }
         
         }else{
