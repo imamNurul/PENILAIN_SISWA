@@ -46,6 +46,7 @@ public class PanelSiswa extends javax.swing.JPanel {
         tableSiswa.setAutoCreateColumnsFromModel(false);
         tableSiswa.getSelectionModel().addListSelectionListener(new SiswaImgSelection());
         
+        comboStatus.setSelectedItem("All");
         
     }
     
@@ -71,7 +72,6 @@ public class PanelSiswa extends javax.swing.JPanel {
                     for(Siswa jsb : get()){
                     tableModel.add(jsb);
                 }
-                    comboStatus.setSelectedItem("All");
                 } catch (InterruptedException | ExecutionException ex) {
                     Logger.getLogger(PanelSiswa.class.getName()).log(Level.SEVERE, null, ex);
                 }

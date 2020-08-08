@@ -37,6 +37,8 @@ public class PanelMapel extends javax.swing.JPanel {
         tableModel = new DynamicTableModel<>(Mapel.class);
         tableMapel.setDynamicModel(tableModel);
         
+        comboStatus.setSelectedItem("All");
+        
     }
     
     private MapelService service = new MapelService();
@@ -61,7 +63,6 @@ public class PanelMapel extends javax.swing.JPanel {
                     for(Mapel jsb : get()){
                     tableModel.add(jsb);
                 }
-                    comboStatus.setSelectedItem("All");
                 } catch (InterruptedException | ExecutionException ex) {
                     Logger.getLogger(PanelMapel.class.getName()).log(Level.SEVERE, null, ex);
                 }
