@@ -84,6 +84,7 @@ public class PanelGuru extends javax.swing.JPanel {
                     for(Guru jsb : get()){
                     tableModel.add(jsb);
                 }
+                    comboStatus.setSelectedItem("All");
                 } catch (InterruptedException | ExecutionException ex) {
                     Logger.getLogger(PanelGuru.class.getName()).log(Level.SEVERE, null, ex);
                 }

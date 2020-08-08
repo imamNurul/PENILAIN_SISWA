@@ -60,6 +60,7 @@ public class PanelKelas extends javax.swing.JPanel {
                     for(Kelas jsb : get()){
                     tableModel.add(jsb);
                 }
+                    comboStatus.setSelectedItem("All");
                 } catch (InterruptedException | ExecutionException ex) {
                     Logger.getLogger(PanelKelas.class.getName()).log(Level.SEVERE, null, ex);
                 }
