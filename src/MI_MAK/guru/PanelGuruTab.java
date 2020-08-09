@@ -20,7 +20,9 @@ public class PanelGuruTab extends javax.swing.JPanel {
     
     public void LoadGuru(){
         panelGuru1.LoadGuru();
-        panelMengajar1.LoadMengajar();
+        panelMengajar2.LoadKelasCombo();
+        panelMengajar2.LoadMengajar("","");
+        
     }
 
     /**
@@ -34,22 +36,34 @@ public class PanelGuruTab extends javax.swing.JPanel {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         panelGuru1 = new MI_MAK.guru.PanelGuru();
-        panelMengajar1 = new MI_MAK.mengajar.PanelMengajar();
+        panelMengajar2 = new MI_MAK.mengajar.PanelMengajar();
 
         setOpaque(false);
         setLayout(new java.awt.BorderLayout());
 
         jTabbedPane1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
         jTabbedPane1.addTab("Data Guru", panelGuru1);
-        jTabbedPane1.addTab("Jadwal Mengajar", panelMengajar1);
+        jTabbedPane1.addTab("Jadwal Mengajar", panelMengajar2);
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+       
+        panelMengajar2.LoadKelasCombo();
+        panelMengajar2.LoadMengajar("","");
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
     private MI_MAK.guru.PanelGuru panelGuru1;
-    private MI_MAK.mengajar.PanelMengajar panelMengajar1;
+    private MI_MAK.mengajar.PanelMengajar panelMengajar2;
     // End of variables declaration//GEN-END:variables
 }

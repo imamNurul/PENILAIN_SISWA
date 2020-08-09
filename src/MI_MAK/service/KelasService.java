@@ -387,7 +387,7 @@ public class KelasService {
         try{
             String sql = "select distinct mp.kd_kelas, mp.nama_kelas from tbl_kelas mp " +
                          "WHERE mp.kd_kelas not in ( " +
-                         "  select kd_kelas from vcarikelasnila where jmlhMapel = totalMapel "+
+                         "  select kd_kelas from vcarikelasnilai where jmlhMapel = totalMapel "+
                          "  and semester = '"+smtr+"' and tahun_ajaran = '"+thn+"') "
                     + "And mp.flag = 1";
             prepare = koneksi.prepareStatement(sql);

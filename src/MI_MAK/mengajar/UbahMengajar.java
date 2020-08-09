@@ -31,11 +31,11 @@ import javax.swing.JOptionPane;
  */
 public class UbahMengajar extends javax.swing.JDialog {
 
-    private Mengajar mengajar;
-    private String ajar;
     private int thnFrom;
     private int thnTo;
     private Connection koneksi;
+    private String mengajar;
+    private Mengajar ajar;
     
     private String varThnFrom;
     private String varThnTo;
@@ -62,17 +62,6 @@ public class UbahMengajar extends javax.swing.JDialog {
         System.out.println("combo kelas: "+param.getKd_kelas()+" - "+param.getNm_kelas());
         txtKodeMengajar.setText(param.getKd_ajar());
         
-//        labelNIP.setText(param.getKd_guru());
-//        labelNipName.setText(param.getNm_guru());
-//        labelKodeKelas.setText(param.getKd_kelas());
-//        labelKelasName.setText(param.getNm_kelas());
-//        labelMapel.setText(param.getKd_mapel());
-//        labelMapelName.setText(param.getNm_mapel());
-//        
-//        comboGuru.setSelectedItem(labelNIP.getText()+" - "+labelNipName.getText());
-//        comboKelas.setSelectedItem(labelKodeKelas.getText()+" - "+labelKelasName.getText());
-//        comboMapel.setSelectedItem(labelMapel.getText()+" - "+labelMapelName.getText());
-        
         comboGuru.setSelectedItem(param.getKd_guru()+" - "+param.getNm_guru());
         comboKelas.setSelectedItem(param.getKd_kelas()+" - "+param.getNm_kelas());
         comboMapel.setSelectedItem(param.getKd_mapel()+" - "+param.getNm_mapel());
@@ -94,37 +83,40 @@ public class UbahMengajar extends javax.swing.JDialog {
         jamSelesai.setValue(param.getJamSelesai());
         labelId.setText(String.valueOf(param.getId()));
         
-        mengajar = param;
+        ajar = param;
         
         setLocationRelativeTo(this);
         setVisible(true);
         
-        return mengajar;
+        return ajar;
     }
+    
     
     public void LoadKelasCombo(){
         KelasService ks = new KelasService();
         List<Kelas> list =  ks.selectKelas();
-        
+        comboKelas.removeAllItems();
+        comboKelas.addItem("Pilih");
         list.stream().forEach((kelas) -> {
             comboKelas.addItem(kelas);
             System.out.println("load Kelas: "+kelas);
         });
     }
     
-    public void LoadGuruCombo(){
-        GuruService gs = new GuruService();
-        List<Guru> list =  gs.selectGuru();
-        
-        list.stream().forEach((guru) -> {
-            comboGuru.addItem(guru);
-        });
-    }
+//    public void LoadGuruCombo(){
+//        GuruService gs = new GuruService();
+//        List<Guru> list =  gs.selectGuru();
+//        
+//        list.stream().forEach((guru) -> {
+//            comboGuru.addItem(guru);
+//        });
+//    }
     
     public void LoadMapelCombo(){
         MapelService ms = new MapelService();
         List<Mapel> list =  ms.selectMapel();
-        
+        comboMapel.removeAllItems();
+        comboMapel.addItem("Pilih");
         list.stream().forEach((mp) -> {
             comboMapel.addItem(mp);
         });
@@ -135,30 +127,59 @@ public class UbahMengajar extends javax.swing.JDialog {
         List<Guru> list =  vs.selectGuruByMapel(id);
         comboGuru.removeAllItems();
         comboGuru.addItem("Pilih");
+        comboGuru.addItem("");
         list.stream().forEach((sw) -> {
             comboGuru.addItem(sw);
             System.out.println("load Guru: "+sw);
         });
     }
     
-    protected String validateJadwalMengajar(String mapel, String kelas, String hari, Time jm, String thn) {
-        ajar = null;
+    protected void autonumber() {
+        try {
+            String sql = "SELECT kode_mengajar FROM jdl_mengajar order by kode_mengajar asc";
+            Statement st = koneksi.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            txtKodeMengajar.setText("JM0001");
+            while (rs.next()) {
+                String id_ceklis = rs.getString("kode_mengajar").substring(2);
+                int AN = Integer.parseInt(id_ceklis);
+                String Nol = "";
+                if (AN < 10) {
+                    Nol = "000";
+                } else if (AN < 100) {
+                    Nol = "00";
+                } else if (AN < 1000) {
+                    Nol = "0";
+                } else if (AN < 10000) {
+                    Nol = "";
+                }
+                txtKodeMengajar.setText("JM" + Nol + AN);
+            }
+        } catch (SQLException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Auto Number Gagal" + e);
+        }
+    }
+    
+     protected String validateJadwalMengajar(String mapel, String kelas, String hari, Time jmMulai, Time jmSelesai,String thn) {
+        mengajar = null;
         try {
             String sql = "SELECT kode_mengajar FROM jdl_mengajar where kode_mapel = '"+mapel+"' AND kode_kelas = '"+kelas+"' "
-                    + "AND hari = '"+hari+"' AND jamMulai = '"+jm+"' AND tahunAjaran = '"+thn+"'";
+                    + "AND hari = '"+hari+"' AND jamMulai = '"+jmMulai+"' AND jamSelesai = '"+jmSelesai+"' "
+                    + "AND tahunAjaran = '"+thn+"'";
             Statement st = koneksi.createStatement();
             ResultSet rs = st.executeQuery(sql);
           
             while (rs.next()) {
-                ajar = rs.getString("kode_mengajar");
+                mengajar = rs.getString("kode_mengajar");
                 
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "validate NIP gagal" + e);
         }
         
-        return ajar;
+        return mengajar;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -174,11 +195,9 @@ public class UbahMengajar extends javax.swing.JDialog {
         labelKodeKelas = new javax.swing.JLabel();
         labelNIP = new javax.swing.JLabel();
         labelMapel = new javax.swing.JLabel();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         labelId = new javax.swing.JLabel();
-        labelNipName = new javax.swing.JLabel();
-        labelMapelName = new javax.swing.JLabel();
-        labelKelasName = new javax.swing.JLabel();
-        lblFlag = new javax.swing.JLabel();
+        labelMapelNama = new javax.swing.JLabel();
         panelImageBackground1 = new MI_MAK.widget.PanelImageBackground();
         jLabel1 = new javax.swing.JLabel();
         txtKodeMengajar = new javax.swing.JTextField();
@@ -212,17 +231,14 @@ public class UbahMengajar extends javax.swing.JDialog {
         jLabel19 = new javax.swing.JLabel();
         ChooseThnAjaranTo = new com.toedter.calendar.JYearChooser();
 
-        lblFlag.setText("jLabel20");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        panelImageBackground1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Tambah Jadwal Mengajar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
+        panelImageBackground1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ubah Jadwal Mengajar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Calibri", 1, 14))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Kode Mengajar");
 
         txtKodeMengajar.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        txtKodeMengajar.setEnabled(false);
 
         jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Nama Mapel");
@@ -280,7 +296,7 @@ public class UbahMengajar extends javax.swing.JDialog {
         jLabel10.setText(":");
 
         comboGuru.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        comboGuru.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih" }));
+        comboGuru.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih", " " }));
         comboGuru.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboGuruActionPerformed(evt);
@@ -324,7 +340,7 @@ public class UbahMengajar extends javax.swing.JDialog {
         jLabel16.setText(":");
 
         comboMapel.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        comboMapel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih" }));
+        comboMapel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih", "Istirahat" }));
         comboMapel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboMapelActionPerformed(evt);
@@ -373,7 +389,15 @@ public class UbahMengajar extends javax.swing.JDialog {
                                         .addComponent(comboGuru, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(panelImageBackground1Layout.createSequentialGroup()
                                             .addComponent(comboHari, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 175, Short.MAX_VALUE)))))
+                                            .addGap(0, 171, Short.MAX_VALUE)))))
+                            .addGroup(panelImageBackground1Layout.createSequentialGroup()
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ChooseThnAjaranFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ChooseThnAjaranTo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelImageBackground1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -387,16 +411,8 @@ public class UbahMengajar extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelImageBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jamMulai, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jamSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelImageBackground1Layout.createSequentialGroup()
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ChooseThnAjaranFrom, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ChooseThnAjaranTo, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 21, Short.MAX_VALUE)))
+                                    .addComponent(jamSelesai, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 25, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelImageBackground1Layout.setVerticalGroup(
@@ -450,7 +466,7 @@ public class UbahMengajar extends javax.swing.JDialog {
                         .addGroup(panelImageBackground1Layout.createSequentialGroup()
                             .addComponent(ChooseThnAjaranTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(0, 0, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -481,14 +497,14 @@ public class UbahMengajar extends javax.swing.JDialog {
             messageComponent1.showWarning("Kode Mengajar Kosong");
         }else if(comboMapel.getSelectedItem().equals("Pilih")){
             messageComponent1.showWarning("Mata Pelajaran kosong");
-        }else if(comboGuru.getSelectedItem().equals("Pilih") || labelNIP.getText().equals("")){
+        }else if(comboGuru.getSelectedItem().equals("Pilih")){
             messageComponent1.showWarning("Nama Guru belum di pilih");
         }else if(comboHari.getSelectedItem().equals("Pilih")){
             messageComponent1.showWarning("Hari kosong");
         }else if(comboKelas.getSelectedItem().equals("Pilih") || labelKodeKelas.getText().equals("")){
             messageComponent1.showWarning("Nama Kelas kosong");
-        }else if(ChooseThnAjaranFrom.getValue() == 0 || ChooseThnAjaranFrom.getValue() < Integer.parseInt(varThnFrom)-1 
-                || ChooseThnAjaranTo.getValue() == 0 || ChooseThnAjaranTo.getValue() < Integer.parseInt(varThnTo)){
+        }else if(ChooseThnAjaranFrom.getValue() == 0 || ChooseThnAjaranFrom.getValue() < thnFrom-1 
+                || ChooseThnAjaranTo.getValue() == 0 || ChooseThnAjaranTo.getValue() < thnTo){
             messageComponent1.showWarning("Tahun Ajaran tidak valid");
         }else if(jamMulai.getValue() == null){
             messageComponent1.showWarning("Jam Mulai kosong");
@@ -496,43 +512,55 @@ public class UbahMengajar extends javax.swing.JDialog {
             messageComponent1.showWarning("Jam Selesai kosong");
         }else{
             
-             String thF = String.valueOf(ChooseThnAjaranFrom.getValue());
+            String thF = String.valueOf(ChooseThnAjaranFrom.getValue());
             String thT = String.valueOf(ChooseThnAjaranTo.getValue());
             
+            
+            
             validateJadwalMengajar(labelMapel.getText(), labelKodeKelas.getText(), 
-                                    comboHari.getSelectedItem().toString(), new java.sql.Time(jamMulai.getValue().hashCode()), thF+"/"+thT);
+                                    comboHari.getSelectedItem().toString(), new java.sql.Time(jamMulai.getValue().hashCode()), 
+                                    new java.sql.Time(jamSelesai.getValue().hashCode()),thF+"/"+thT);
             
-            
-             if(mengajar != null){
+            if(mengajar != null){
                 System.out.println("");
                 messageComponent1.setMessageFont(new Font("Calibri", Font.BOLD, 14));
                 messageComponent1.showWarning("Jadwal Mengajar sudah ada dengan kode:"+mengajar, 6700);
             }else{
-                Mengajar mj = new Mengajar();
-                mj.setId(Integer.parseInt(labelId.getText()));
-                mj.setUpdatedby("Admin");
-                mj.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
-                mj.setKd_mapel(labelMapel.getText());
-                mj.setKd_ajar(txtKodeMengajar.getText());
-                mj.setKd_guru(labelNIP.getText());
-                mj.setHari(comboHari.getSelectedItem().toString());
-                mj.setJamMulai(new java.sql.Time(jamMulai.getValue().hashCode()));
-                mj.setJamSelesai(new java.sql.Time(jamSelesai.getValue().hashCode()));
-                mj.setKd_kelas(labelKodeKelas.getText());
-                mj.setTahunAjaran(thF+"/"+thT);
+                
+                if(!labelMapelNama.getText().toUpperCase().equals("ISTIRAHAT") && comboGuru.getSelectedItem().equals("")){
+                    messageComponent1.showWarning("Guru belum dipilih");
+                }else{
+                    
+                     Mengajar mj = new Mengajar();
+                    mj.setUpdatedby("Admin");
+                    mj.setUpdateddate(new java.sql.Timestamp(new java.util.Date().getTime()));
+                    mj.setFlag(1);
+                    mj.setKd_mapel(labelMapel.getText());
+                    mj.setKd_ajar(txtKodeMengajar.getText());
+                    mj.setKd_guru(labelNIP.getText());
+                    mj.setHari(comboHari.getSelectedItem().toString());
+                    mj.setJamMulai(new java.sql.Time(jamMulai.getValue().hashCode()));
+                    mj.setJamSelesai(new java.sql.Time(jamSelesai.getValue().hashCode()));
+                    mj.setKd_kelas(labelKodeKelas.getText());
+                    mj.setTahunAjaran(thF+"/"+thT);
 
 
-                MengajarService service = new MengajarService();
-                service.update(mj);
-                dispose();
+                    MengajarService service = new MengajarService();
+                    service.update(mj);
+                    dispose();
+                    
+                }
+                
+               
             }
+            
+            
         }
         
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void comboKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboKelasActionPerformed
         // TODO add your handling code here:
-        
         switch (comboKelas.getSelectedIndex()) {
             case -1:
                 labelKodeKelas.setText("");
@@ -553,6 +581,8 @@ public class UbahMengajar extends javax.swing.JDialog {
                 break;
         }
         
+        
+        
     }//GEN-LAST:event_comboKelasActionPerformed
 
     private void comboGuruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboGuruActionPerformed
@@ -562,6 +592,9 @@ public class UbahMengajar extends javax.swing.JDialog {
                 labelNIP.setText("");
                 break;
             case 0:
+                labelNIP.setText("");
+                break;
+            case 1:
                 labelNIP.setText("");
                 break;
             default:
@@ -577,11 +610,12 @@ public class UbahMengajar extends javax.swing.JDialog {
                 break;
         }
         
+        
+        
     }//GEN-LAST:event_comboGuruActionPerformed
 
     private void comboMapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMapelActionPerformed
         // TODO add your handling code here:
-        
         switch (comboMapel.getSelectedIndex()) {
             case -1:
                 labelMapel.setText("");
@@ -590,6 +624,7 @@ public class UbahMengajar extends javax.swing.JDialog {
             case 0:
                 labelMapel.setText("");
                 LoadGuruByMapelCombo("");
+                comboGuru.setSelectedItem("");
                 break;
             default:
                 String lblKodeMapel;
@@ -601,9 +636,13 @@ public class UbahMengajar extends javax.swing.JDialog {
                 System.out.println("split kode: "+varStrKode);
                 System.out.println("split nama: "+varStrNama);
                 labelMapel.setText(varStrKode);
+                labelMapelNama.setText(varStrNama);
                 LoadGuruByMapelCombo(labelMapel.getText());
                 break;
         }
+        
+        
+        
         
     }//GEN-LAST:event_comboMapelActionPerformed
 
@@ -613,6 +652,7 @@ public class UbahMengajar extends javax.swing.JDialog {
     private com.toedter.calendar.JYearChooser ChooseThnAjaranTo;
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnSimpan;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox comboGuru;
     private javax.swing.JComboBox comboHari;
     private javax.swing.JComboBox comboKelas;
@@ -641,13 +681,10 @@ public class UbahMengajar extends javax.swing.JDialog {
     private javax.swing.JSpinner jamMulai;
     private javax.swing.JSpinner jamSelesai;
     private javax.swing.JLabel labelId;
-    private javax.swing.JLabel labelKelasName;
     private javax.swing.JLabel labelKodeKelas;
     private javax.swing.JLabel labelMapel;
-    private javax.swing.JLabel labelMapelName;
+    private javax.swing.JLabel labelMapelNama;
     private javax.swing.JLabel labelNIP;
-    private javax.swing.JLabel labelNipName;
-    private javax.swing.JLabel lblFlag;
     private com.stripbandunk.jglasspane.component.MessageComponent messageComponent1;
     private MI_MAK.widget.PanelImageBackground panelImageBackground1;
     private javax.swing.JTextField txtKodeMengajar;

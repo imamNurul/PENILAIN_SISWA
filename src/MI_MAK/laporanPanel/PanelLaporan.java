@@ -1645,7 +1645,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         if(comboKelasNgajar.getSelectedItem().equals("All")){
             varKls = "";
         }else{
-            varKls = lblKlsKdNgajar.getText();
+            varKls = lblKlsNmNgajar.getText();
         }
         if(comboMapelNgajar.getSelectedItem().equals("All")){
             varMapel = "";

@@ -5,7 +5,6 @@
  */
 package MI_MAK.service;
 
-import MI_MAK.dao.Kelas;
 import MI_MAK.dao.Mapel;
 import MI_MAK.db.DatabaseUtilitas;
 import java.sql.Connection;
@@ -405,8 +404,6 @@ public class MapelService {
             }
         }
     }
-    
-    
-    
+
     
 }

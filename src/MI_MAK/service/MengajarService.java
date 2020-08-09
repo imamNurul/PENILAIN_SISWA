@@ -41,8 +41,8 @@ public class MengajarService {
         PreparedStatement prepare = null;
         
         try{
-            String sql = "INSERT INTO jdl_mengajar(kode_mengajar, kode_kelas, kode_mapel, kode_guru, hari, jamMulai, jamSelesai, tahunAjaran, "
-                    + "flag, createdby, createddate) "
+            String sql = "INSERT INTO jdl_mengajar(kode_mengajar, kode_kelas, kode_mapel, kode_guru, hari, "
+                    + "jamMulai, jamSelesai, tahunAjaran, flag, createdby, createddate) "
                     +"VALUES(?,?,?,?,?,?,?,?,?,?,?)";
             
             prepare = koneksi.prepareStatement(sql);
@@ -105,7 +105,6 @@ public class MengajarService {
             prepare.setString(2, ajar.getKd_kelas());
             prepare.setString(3, ajar.getKd_mapel());
             prepare.setString(4, ajar.getKd_guru());
-            
             prepare.setString(5, ajar.getHari());
             prepare.setTime(6, ajar.getJamMulai());
             prepare.setTime(7, ajar.getJamSelesai());
@@ -226,6 +225,68 @@ public class MengajarService {
          
      }   
     
+    
+    public List<Mengajar> SelectByKelasHari(String kls, String hari){
+        
+        PreparedStatement prepare = null;
+        ResultSet resultSet = null;
+        
+        List<Mengajar> list = new ArrayList<>();
+     try{
+             String sql = "SELECT distinct mj.*, kl.nama_kelas, gr.nama_guru, mp.nama_mapel FROM jdl_mengajar mj "
+                     + "LEFT JOIN tbl_kelas kl ON kl.kd_kelas = mj.kode_kelas "
+                     + "LEFT JOIN tbl_guru gr ON gr.nip = mj.kode_guru "
+                     + "LEFT JOIN tbl_mapel mp ON mp.kd_mapel = mj.kode_mapel "
+                     + "WHERE kl.nama_kelas like '%"+kls+"%' AND mj.hari like '%"+hari+"%' "
+                     + "order by mj.kode_mengajar ASC, mj.kode_kelas, mj.jamMulai ASC";
+            prepare = koneksi.prepareStatement(sql);
+            
+            resultSet = prepare.executeQuery();
+            
+            while(resultSet.next()){
+                Mengajar ajar = new Mengajar();
+                ajar.setKd_ajar(resultSet.getString("kode_mengajar"));
+                ajar.setKd_guru(resultSet.getString("kode_guru"));
+                ajar.setKd_mapel(resultSet.getString("kode_mapel"));
+                ajar.setHari(resultSet.getString("hari"));
+                ajar.setId(resultSet.getInt("id"));
+                ajar.setJamMulai(resultSet.getTime("jamMulai"));
+                ajar.setJamSelesai(resultSet.getTime("jamSelesai"));
+                ajar.setKd_kelas(resultSet.getString("kode_kelas"));
+                ajar.setTahunAjaran(resultSet.getString("tahunAjaran"));
+                ajar.setNm_guru(resultSet.getString("nama_guru"));
+                ajar.setNm_kelas(resultSet.getString("nama_kelas"));
+                ajar.setNm_mapel(resultSet.getString("nama_mapel"));
+                list.add(ajar);
+                
+            }
+            
+            return list;
+            
+        }catch(SQLException e){
+              JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+              JOptionPane.showMessageDialog(frame, "Error selectByKlasHari Mengajar 1 : '" +e+"'.");
+            return list;
+        }finally{
+            if(prepare != null){
+                try{
+                    prepare.close();
+                }catch(SQLException e){
+                    JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                    JOptionPane.showMessageDialog(frame, "Error selectByKlasHari Mengajar 2 : '" +e+"'.");
+                }
+            }
+            if(resultSet != null){
+                try{
+                    resultSet.close();
+                }catch(SQLException ex){
+                    JFrame frame = new JFrame("JOptionPane showMessageDialog example");
+                    JOptionPane.showMessageDialog(frame, "Error selectByKlasHari Mengajar 3 : '" +ex+"'.");
+                }
+            }
+        }
+         
+     }
     
     
     
