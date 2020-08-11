@@ -12,7 +12,7 @@
 	<parameter name="logo" class="java.awt.Image" isForPrompting="false"/>
 	<parameter name="waktu" class="java.lang.String" isForPrompting="false"/>
 	<queryString>
-		<![CDATA[select kl.kd_kelas,kl.nama_kelas, gr.nama_guru, mp.nama_mapel,
+		<![CDATA[select jm.kode_mengajar, kl.kd_kelas,kl.nama_kelas, gr.nama_guru, mp.nama_mapel,
 jm.hari, jm.jamMulai, jm.jamSelesai, jm.tahunAjaran from jdl_mengajar jm
 left outer join tbl_kelas kl on kl.kd_kelas = jm.kode_kelas
 left outer JOIN tbl_guru gr on gr.nip = jm.kode_guru
@@ -21,8 +21,11 @@ where kl.nama_kelas LIKE '%$P!{kd_kelas}%'
 AND jm.kode_guru LIKE '%$P!{kd_guru}%'
 AND jm.kode_mapel LIKE '%$P!{kd_mapel}%'
 AND jm.hari LIKE '%$P!{hari}%'
-order by kl.nama_kelas, jm.hari, jm.jamMulai ASC]]>
+order by kl.nama_kelas ASC, jm.kode_mengajar ASC, jm.jamMulai ASC]]>
 	</queryString>
+	<field name="kode_mengajar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="kd_kelas" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>

@@ -715,15 +715,15 @@ public class TambahGuru extends javax.swing.JDialog {
                 }
                 if(rbYa.isSelected()==true){
                     if(comboKelas.getSelectedItem().equals("Pilih")){
-                        guru.setKd_kelas(null);
-                        guru.setNm_kelas(null);
+                        guru.setKd_kelas("");
+                        guru.setNm_kelas("");
                     }else{
                         guru.setKd_kelas(lblKodeKelas.getText());
                         guru.setNm_kelas(lblNamaKelas.getText());
                     }
                 }else{
-                    guru.setKd_kelas(null);
-                    guru.setNm_kelas(null);
+                    guru.setKd_kelas("");
+                    guru.setNm_kelas("");
                 }
 
                 guru.setKd_mapel(lblKodeMapel.getText());

@@ -18,7 +18,8 @@ left outer join tbl_mapel mp on mp.kd_mapel = jm.kode_mapel
 where jm.kode_kelas LIKE '%$P!{kd_kelas}%'
 AND jm.kode_guru LIKE '%$P!{kd_guru}%'
 AND jm.kode_mapel LIKE '%$P!{kd_mapel}%'
-AND jm.hari LIKE '%$P!{hari}%']]>
+AND jm.hari LIKE '%$P!{hari}%'
+order by jm.kode_mengajar ASC, jm.jamMulai ASC]]>
 	</queryString>
 	<field name="kode_mengajar" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
