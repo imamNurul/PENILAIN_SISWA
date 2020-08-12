@@ -58,6 +58,9 @@ and nh.tahun_ajaran = $P{thn_ajaran} and nh.semester = $P{smester}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="rapor" class="java.lang.String"/>
+	<variable name="noUrut" class="java.lang.Number" calculation="Count">
+		<variableExpression><![CDATA[$F{id_nilai}]]></variableExpression>
+	</variable>
 	<group name="Header"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -280,7 +283,7 @@ and nh.tahun_ajaran = $P{thn_ajaran} and nh.semester = $P{smester}]]>
 	</columnHeader>
 	<detail>
 		<band height="26" splitType="Stretch">
-			<textField>
+			<textField pattern="###0">
 				<reportElement x="0" y="0" width="29" height="26" uuid="25c00861-1d4c-4260-84e8-36d8a3ee508d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
@@ -291,7 +294,7 @@ and nh.tahun_ajaran = $P{thn_ajaran} and nh.semester = $P{smester}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{noUrut}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="441" y="0" width="54" height="26" uuid="ade4abbf-e357-46f8-ad85-4f7393aa6e86"/>
@@ -392,6 +395,59 @@ and nh.tahun_ajaran = $P{thn_ajaran} and nh.semester = $P{smester}]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="305" y="8" width="180" height="19" uuid="1e16501f-ee3e-45ed-9bdd-362a17667ec3"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="96" width="180" height="19" uuid="5b11bbc7-919b-431c-9b94-491e59d3bf55"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="27" width="180" height="19" uuid="3d246662-02df-4e83-9e77-d2cb2942e676"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="305" y="115" width="180" height="19" uuid="1eec2ac5-971d-415a-8cde-8086932b3926"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NIP.]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

@@ -21,6 +21,9 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 	<field name="tbl_mapel_kd_mapel" class="java.lang.String"/>
 	<field name="tbl_mapel_nama_mapel" class="java.lang.String"/>
 	<field name="tbl_mapel_keterangan" class="java.lang.String"/>
+	<variable name="noUrut" class="java.lang.Number" calculation="Count">
+		<variableExpression><![CDATA[$F{tbl_mapel_id}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -104,7 +107,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 	</columnHeader>
 	<detail>
 		<band height="31" splitType="Stretch">
-			<textField>
+			<textField pattern="###0">
 				<reportElement x="0" y="0" width="29" height="31" uuid="25c00861-1d4c-4260-84e8-36d8a3ee508d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
@@ -115,7 +118,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{noUrut}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="29" y="0" width="131" height="31" uuid="ae58397a-bbd6-42e1-b710-5935d637254d"/>
@@ -177,6 +180,59 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="288" y="7" width="180" height="19" uuid="0ec4eaab-239b-467b-95ac-d0f3131de359"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="95" width="180" height="19" uuid="18c0b2cf-cc8c-47ed-ac22-b7f2091dcde8"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="26" width="180" height="19" uuid="a054767a-e477-421e-b8dc-04c4d1c50f4a"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="114" width="180" height="19" uuid="6f7b2f08-90f8-4e88-ae2e-ebc12e708d64"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NIP.]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

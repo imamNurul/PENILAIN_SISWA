@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="560" pageHeight="750" orientation="Landscape" columnWidth="540" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="600" pageHeight="750" orientation="Landscape" columnWidth="580" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -118,6 +118,9 @@ and nh.semester = $P{smester}]]>
 	</field>
 	<field name="wali" class="java.lang.String"/>
 	<variable name="variable1" class="java.lang.String" resetType="None" calculation="Sum"/>
+	<variable name="noUrut" class="java.lang.Number" calculation="Count">
+		<variableExpression><![CDATA[$F{id_nilai}]]></variableExpression>
+	</variable>
 	<group name="Header"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -125,7 +128,7 @@ and nh.semester = $P{smester}]]>
 	<title>
 		<band height="43">
 			<staticText>
-				<reportElement x="0" y="0" width="540" height="43" uuid="5e4723b7-b838-4ca9-8fdb-bb282689e2f3"/>
+				<reportElement x="0" y="0" width="580" height="43" uuid="5e4723b7-b838-4ca9-8fdb-bb282689e2f3"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -139,7 +142,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[Laporan Nilai Rapot Siswa di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="457" y="2" width="83" height="39" uuid="a38ba0ee-7496-47da-b967-0e2b6801b754"/>
+				<reportElement x="494" y="2" width="83" height="39" uuid="a38ba0ee-7496-47da-b967-0e2b6801b754"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
@@ -255,7 +258,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<frame>
-				<reportElement x="0" y="0" width="540" height="64" uuid="7917ef25-0e3e-4085-a409-749b93998864"/>
+				<reportElement x="0" y="0" width="580" height="64" uuid="7917ef25-0e3e-4085-a409-749b93998864"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -268,7 +271,7 @@ and nh.semester = $P{smester}]]>
 	<columnHeader>
 		<band height="23" splitType="Stretch">
 			<staticText>
-				<reportElement x="29" y="0" width="98" height="23" uuid="347fbb05-597d-49b1-b187-d1cb94a2a72d"/>
+				<reportElement x="29" y="0" width="106" height="23" uuid="347fbb05-597d-49b1-b187-d1cb94a2a72d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -294,7 +297,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[No.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="127" y="0" width="144" height="23" uuid="7947fa0f-2cc7-4156-94be-a3ae0e9f7e0f"/>
+				<reportElement x="135" y="0" width="175" height="23" uuid="7947fa0f-2cc7-4156-94be-a3ae0e9f7e0f"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -307,7 +310,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[Mata Pelajaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="271" y="0" width="53" height="23" uuid="2d536d5b-a3cf-4bc4-b9ed-b9b480ce3d4a"/>
+				<reportElement x="310" y="0" width="53" height="23" uuid="2d536d5b-a3cf-4bc4-b9ed-b9b480ce3d4a"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -320,7 +323,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[UH]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="324" y="0" width="53" height="23" uuid="83bd8988-60cb-4e98-b373-1020eb5798ab"/>
+				<reportElement x="363" y="0" width="53" height="23" uuid="83bd8988-60cb-4e98-b373-1020eb5798ab"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -333,7 +336,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[UTS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="0" width="53" height="23" uuid="057ac49c-76d8-4e44-878d-9571cb00de6b"/>
+				<reportElement x="416" y="0" width="53" height="23" uuid="057ac49c-76d8-4e44-878d-9571cb00de6b"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -346,7 +349,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[UAS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="485" y="0" width="55" height="23" uuid="ac8763d8-d85f-4f01-b0fc-9c7db14dcaec"/>
+				<reportElement x="524" y="0" width="56" height="23" uuid="ac8763d8-d85f-4f01-b0fc-9c7db14dcaec"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -359,7 +362,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[Rapor]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="430" y="0" width="55" height="23" uuid="fb0f43f5-272b-44a2-a27f-e5de88b1453c"/>
+				<reportElement x="469" y="0" width="55" height="23" uuid="fb0f43f5-272b-44a2-a27f-e5de88b1453c"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -375,7 +378,7 @@ and nh.semester = $P{smester}]]>
 	</columnHeader>
 	<detail>
 		<band height="26" splitType="Stretch">
-			<textField>
+			<textField pattern="###0">
 				<reportElement x="0" y="0" width="29" height="26" uuid="25c00861-1d4c-4260-84e8-36d8a3ee508d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
@@ -386,10 +389,10 @@ and nh.semester = $P{smester}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{noUrut}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="485" y="0" width="55" height="26" uuid="ade4abbf-e357-46f8-ad85-4f7393aa6e86"/>
+				<reportElement x="524" y="0" width="56" height="26" uuid="ade4abbf-e357-46f8-ad85-4f7393aa6e86"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -402,7 +405,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{rapor}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="29" y="0" width="98" height="26" uuid="d4bcdca6-4661-44ae-a48b-cd6c2aa72346"/>
+				<reportElement x="29" y="0" width="106" height="26" uuid="d4bcdca6-4661-44ae-a48b-cd6c2aa72346"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -415,7 +418,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{kd_mapel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="127" y="0" width="144" height="26" uuid="ed9ddeb5-c501-42e8-a7c9-5c82bd578619"/>
+				<reportElement x="135" y="0" width="175" height="26" uuid="ed9ddeb5-c501-42e8-a7c9-5c82bd578619"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -428,7 +431,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{nama_mapel}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="271" y="0" width="53" height="26" uuid="1407375d-90e9-42a8-b79b-4593ae62aea3"/>
+				<reportElement x="310" y="0" width="53" height="26" uuid="1407375d-90e9-42a8-b79b-4593ae62aea3"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -441,7 +444,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{UH}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="324" y="0" width="53" height="26" uuid="113b0c3f-de3d-46d0-91f1-0c20f1ffd4fe"/>
+				<reportElement x="363" y="0" width="53" height="26" uuid="113b0c3f-de3d-46d0-91f1-0c20f1ffd4fe"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -454,7 +457,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{UTS}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="0" width="53" height="26" uuid="78782b29-0d5c-4595-80be-4f0d4cedb402"/>
+				<reportElement x="416" y="0" width="53" height="26" uuid="78782b29-0d5c-4595-80be-4f0d4cedb402"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -467,7 +470,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{UAS}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="430" y="0" width="55" height="26" uuid="ba11797a-4dac-4912-b20f-ab753912d9e5"/>
+				<reportElement x="469" y="0" width="55" height="26" uuid="ba11797a-4dac-4912-b20f-ab753912d9e5"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -554,42 +557,35 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{absAlpa}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="77" y="79" width="70" height="15" uuid="fb496310-46d5-491f-a8e2-f93a33adde64"/>
+				<reportElement x="52" y="79" width="70" height="15" uuid="fb496310-46d5-491f-a8e2-f93a33adde64"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Mengetahui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="64" y="94" width="96" height="15" uuid="3050cd21-7c2f-442d-911a-1b876e7fd0d1"/>
+				<reportElement x="39" y="94" width="96" height="15" uuid="3050cd21-7c2f-442d-911a-1b876e7fd0d1"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Orang Tua / Wali]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="298" y="64" width="79" height="15" uuid="f0de06db-cad9-414e-ac0d-4b83436b59ff"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Calibri" size="12" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Diberikan di :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="298" y="79" width="79" height="15" uuid="4c5260a7-8562-4114-961d-36261552bb7d"/>
+				<reportElement x="188" y="79" width="79" height="15" uuid="4c5260a7-8562-4114-961d-36261552bb7d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Tanggal :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="298" y="94" width="79" height="15" uuid="83c47ff2-1ab0-472e-85a2-63de097ffcfa"/>
+				<reportElement x="188" y="94" width="79" height="15" uuid="83c47ff2-1ab0-472e-85a2-63de097ffcfa"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Wali Kelas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="298" y="160" width="24" height="20" uuid="50b37eb5-4fdc-492e-b088-01084d587445"/>
+				<reportElement x="188" y="160" width="24" height="20" uuid="50b37eb5-4fdc-492e-b088-01084d587445"/>
 				<box>
 					<bottomPen lineWidth="0.0"/>
 				</box>
@@ -599,7 +595,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[NIP. ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="321" y="160" width="208" height="20" uuid="429fec34-64b2-4100-93e3-00778299b56b"/>
+				<reportElement x="211" y="160" width="152" height="20" uuid="429fec34-64b2-4100-93e3-00778299b56b"/>
 				<box>
 					<bottomPen lineWidth="0.5"/>
 				</box>
@@ -609,7 +605,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{nip}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="298" y="140" width="231" height="20" uuid="8e75836e-6ba9-47f8-8909-18f8252a9a1d"/>
+				<reportElement x="188" y="140" width="175" height="20" uuid="8e75836e-6ba9-47f8-8909-18f8252a9a1d"/>
 				<box>
 					<bottomPen lineWidth="0.5"/>
 				</box>
@@ -619,7 +615,7 @@ and nh.semester = $P{smester}]]>
 				<textFieldExpression><![CDATA[$F{nama_guru}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="33" y="140" width="152" height="20" uuid="79cb97ae-0403-4b54-9d97-8350b5deb740"/>
+				<reportElement x="8" y="140" width="152" height="20" uuid="79cb97ae-0403-4b54-9d97-8350b5deb740"/>
 				<box>
 					<bottomPen lineWidth="0.5"/>
 				</box>
@@ -628,6 +624,65 @@ and nh.semester = $P{smester}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{wali}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="188" y="64" width="79" height="15" uuid="f0de06db-cad9-414e-ac0d-4b83436b59ff"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Diberikan di :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="60" width="180" height="19" uuid="1ccb58c1-ea2b-4407-99a6-d22ebace5b0b"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="141" width="180" height="19" uuid="a9416e24-4e2e-440b-a59d-c50fe0f0fca5"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="79" width="180" height="19" uuid="77aa4a97-cf99-4989-bc2a-4bd9e7da6be6"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="392" y="160" width="180" height="19" uuid="32092947-9f3a-4a12-b107-fb3e567907cd"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NIP.]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

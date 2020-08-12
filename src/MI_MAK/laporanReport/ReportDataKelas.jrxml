@@ -34,6 +34,9 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 	<field name="nama_guru" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<variable name="noUrut" class="java.lang.Number" calculation="Count">
+		<variableExpression><![CDATA[$F{id}]]></variableExpression>
+	</variable>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -117,7 +120,7 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 	</columnHeader>
 	<detail>
 		<band height="31" splitType="Stretch">
-			<textField>
+			<textField pattern="###0">
 				<reportElement x="0" y="0" width="29" height="31" uuid="25c00861-1d4c-4260-84e8-36d8a3ee508d"/>
 				<box>
 					<topPen lineWidth="0.5"/>
@@ -128,7 +131,7 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$V{noUrut}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="29" y="0" width="101" height="31" uuid="168afbe6-bddf-485b-92a5-98ec10409a0d"/>
@@ -190,6 +193,59 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="140" splitType="Stretch">
+			<staticText>
+				<reportElement x="283" y="10" width="180" height="19" uuid="e66e33a3-342e-442c-ab55-b7463a8c1214"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="98" width="180" height="19" uuid="5632b1cc-6fc5-431e-a7c2-41d734e7f9b6"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="29" width="180" height="19" uuid="4a982d5b-f235-4cd1-9a0f-0325e7ad0783"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="117" width="180" height="19" uuid="659fb549-2754-4fcb-8aa6-a3e0506cddfb"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NIP.]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>
