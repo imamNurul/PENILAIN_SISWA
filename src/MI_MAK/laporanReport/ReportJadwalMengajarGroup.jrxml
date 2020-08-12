@@ -100,11 +100,11 @@ order by kl.nama_kelas ASC, jm.kode_mengajar ASC, jm.jamMulai ASC]]>
 	<title>
 		<band height="43" splitType="Stretch">
 			<image>
-				<reportElement x="415" y="2" width="83" height="39" uuid="242b67e8-852e-4039-9bb7-0677eb267e21"/>
+				<reportElement x="0" y="0" width="83" height="39" uuid="242b67e8-852e-4039-9bb7-0677eb267e21"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="0" y="0" width="500" height="43" uuid="eba59786-12b3-42b0-993d-bc515386eb84"/>
+				<reportElement x="83" y="0" width="416" height="43" uuid="eba59786-12b3-42b0-993d-bc515386eb84"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>

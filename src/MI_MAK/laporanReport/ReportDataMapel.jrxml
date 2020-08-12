@@ -30,21 +30,21 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 	<title>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="480" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<reportElement x="83" y="0" width="305" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Mata Pelajaran di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="397" y="0" width="83" height="39" uuid="ac4d816d-5373-434a-94b1-7b0c98a4b031"/>
+				<reportElement x="0" y="0" width="83" height="39" uuid="ac4d816d-5373-434a-94b1-7b0c98a4b031"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>

@@ -50,14 +50,14 @@ WHERE kls.kd_kelas LIKE '%$P!{kd_kelas}%']]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Kelas di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="397" y="0" width="83" height="39" uuid="ab05cd19-68f4-4ad6-8573-fd4125c68568"/>
+				<reportElement x="0" y="0" width="83" height="39" uuid="ab05cd19-68f4-4ad6-8573-fd4125c68568"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>

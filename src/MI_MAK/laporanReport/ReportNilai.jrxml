@@ -56,21 +56,21 @@ AND th.`tahun_ajaran` = $P{thn_ajaran} AND th.`semester` = $P{smester}]]>
 	<title>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="480" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<reportElement x="98" y="0" width="382" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Nilai Siswa di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="397" y="3" width="83" height="39" uuid="ed84a87f-0bf9-48a9-92a6-a92a527f8066"/>
+				<reportElement x="2" y="0" width="83" height="39" uuid="ed84a87f-0bf9-48a9-92a6-a92a527f8066"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>

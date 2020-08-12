@@ -135,14 +135,14 @@ and nh.semester = $P{smester}]]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
 				<text><![CDATA[Laporan Nilai Rapot Siswa di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="494" y="2" width="83" height="39" uuid="a38ba0ee-7496-47da-b967-0e2b6801b754"/>
+				<reportElement x="4" y="0" width="83" height="39" uuid="a38ba0ee-7496-47da-b967-0e2b6801b754"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
@@ -359,7 +359,7 @@ and nh.semester = $P{smester}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Rapor]]></text>
+				<text><![CDATA[Rata-Rata]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="469" y="0" width="55" height="23" uuid="fb0f43f5-272b-44a2-a27f-e5de88b1453c"/>

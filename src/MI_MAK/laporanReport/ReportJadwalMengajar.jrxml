@@ -58,13 +58,13 @@ order by jm.kode_mengajar ASC, jm.jamMulai ASC]]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Laporan Jadwal Mengajar di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="697" y="2" width="83" height="39" uuid="5b05b785-e01b-40cb-a7fb-b187ad6fa2ca"/>
+				<reportElement x="0" y="0" width="83" height="39" uuid="5b05b785-e01b-40cb-a7fb-b187ad6fa2ca"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
@@ -330,6 +330,59 @@ order by jm.kode_mengajar ASC, jm.jamMulai ASC]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="145" splitType="Stretch">
+			<staticText>
+				<reportElement x="589" y="99" width="180" height="19" uuid="29882e54-455f-4211-a473-34d3e3aa9b17"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="118" width="180" height="19" uuid="3d1a362f-5586-481e-950a-b651248ad045"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NIP.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="30" width="180" height="19" uuid="19dd1bbf-f453-4fc4-9b42-0e00a72d02e9"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Kepala Sekolah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="11" width="180" height="19" uuid="1611bb1c-dde4-4e7d-bd58-fddea4e639d5"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+			</staticText>
+		</band>
 	</summary>
 </jasperReport>

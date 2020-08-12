@@ -73,14 +73,14 @@ tbl_guru.`kd_mapel` LIKE '%$P!{kd_mapel}%']]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Bottom">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
 				<text><![CDATA[Laporan Data Guru di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="932" y="0" width="83" height="43" uuid="56351fa5-a22d-4de9-99ad-c4ebd28427e4"/>
+				<reportElement x="0" y="0" width="83" height="43" uuid="56351fa5-a22d-4de9-99ad-c4ebd28427e4"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
