@@ -42,8 +42,8 @@ public class AbsenService {
         
         try{
             String sql = "INSERT INTO tbl_absensi(kd_absen, kd_kelas, nama_kelas, kd_siswa, nama_siswa, "
-                    + "tgl_buat, semester, tgl_dari, tgl_sampai, sakit, izin, alpa, keterangan) "
-                    +"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "tgl_buat, semester, tgl_dari, tgl_sampai, hadir, sakit, izin, alpa, keterangan) "
+                    +"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
             
             prepare = koneksi.prepareStatement(sql);
             
@@ -56,10 +56,11 @@ public class AbsenService {
             prepare.setString(7, absen.getSemester());
             prepare.setDate(8, new java.sql.Date(absen.getTglDari().getTime()));
             prepare.setDate(9, new java.sql.Date(absen.getTglSampai().getTime()));
-            prepare.setLong(10, absen.getSakit());
-            prepare.setLong(11, absen.getIzin());
-            prepare.setLong(12, absen.getAlpa());
-            prepare.setString(13, absen.getKet());
+            prepare.setLong(10, absen.getHadir());
+            prepare.setLong(11, absen.getSakit());
+            prepare.setLong(12, absen.getIzin());
+            prepare.setLong(13, absen.getAlpa());
+            prepare.setString(14, absen.getKet());
             
             prepare.executeUpdate();
             
@@ -98,7 +99,7 @@ public class AbsenService {
         
         try {
         String sql = "UPDATE tbl_absensi SET kd_absen = ?, kd_kelas = ?, nama_kelas = ?, kd_siswa = ?, "
-                + "nama_siswa = ?, tgl_ubah = ?, semester = ?, tgl_dari = ?, tgl_sampai = ?, "
+                + "nama_siswa = ?, tgl_ubah = ?, semester = ?, tgl_dari = ?, tgl_sampai = ?, hadir = ?, "
                 + "sakit = ?, izin = ?, alpa = ?, keterangan = ? WHERE id = ?";
             
             prepare = koneksi.prepareStatement(sql);
@@ -112,11 +113,12 @@ public class AbsenService {
             prepare.setString(7, absen.getSemester());
             prepare.setDate(8, new java.sql.Date(absen.getTglDari().getTime()));
             prepare.setDate(9, new java.sql.Date(absen.getTglSampai().getTime()));
-            prepare.setLong(10, absen.getSakit());
-            prepare.setLong(11, absen.getIzin());
-            prepare.setLong(12, absen.getAlpa());
-            prepare.setString(13, absen.getKet());
-            prepare.setInt(14, absen.getId());
+            prepare.setLong(10, absen.getHadir());
+            prepare.setLong(11, absen.getSakit());
+            prepare.setLong(12, absen.getIzin());
+            prepare.setLong(13, absen.getAlpa());
+            prepare.setString(14, absen.getKet());
+            prepare.setInt(15, absen.getId());
             
             prepare.executeUpdate();
             
@@ -203,6 +205,7 @@ public class AbsenService {
                 absen.setTglDari(resultSet.getDate("tgl_dari"));
                 absen.setTglSampai(resultSet.getDate("tgl_sampai"));
                 absen.setKet(resultSet.getString("keterangan"));
+                absen.setHadir(resultSet.getLong("hadir"));
                
                 list.add(absen);
                 

@@ -32,15 +32,17 @@ public class Absen {
     private Date tglDari;
     @TableColumn(number = 6, name = "Tanggal Sampai", renderer = TanggalCellRendererTable.class)
     private Date tglSampai;
-    @TableColumn(number = 7, name = "Sakit")
+    @TableColumn(number = 7, name = "Hadir")
+    private Long hadir;
+    @TableColumn(number = 8, name = "Sakit")
     private Long sakit;
-    @TableColumn(number = 8, name = "Izin")
+    @TableColumn(number = 9, name = "Izin")
     private Long izin;
-    @TableColumn(number = 9, name = "Alpa")
+    @TableColumn(number = 10, name = "Alpa")
     private Long alpa;
-    @TableColumn(number = 10, name = "Tanggal Buat",renderer = TanggalTimeCellRendererTable.class)
+    @TableColumn(number = 11, name = "Tanggal Buat",renderer = TanggalTimeCellRendererTable.class)
     private Timestamp tgl_buat;
-    @TableColumn(number = 11, name = "Tanggal Ubah",renderer = TanggalTimeCellRendererTable.class)
+    @TableColumn(number = 12, name = "Tanggal Ubah",renderer = TanggalTimeCellRendererTable.class)
     private Timestamp tgl_ubah;
     private String ket;
 
@@ -115,6 +117,16 @@ public class Absen {
     public void setTglSampai(Date tglSampai) {
         this.tglSampai = tglSampai;
     }
+
+    public Long getHadir() {
+        return hadir;
+    }
+
+    public void setHadir(Long hadir) {
+        this.hadir = hadir;
+    }
+    
+    
 
     public Long getSakit() {
         return sakit;

@@ -207,7 +207,7 @@ public class UbahAbsen extends javax.swing.JDialog {
         jLabel5.setText("Semester");
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel9.setText("Ketidakhadiran");
+        jLabel9.setText("Status");
 
         jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel10.setText(":");
@@ -247,7 +247,7 @@ public class UbahAbsen extends javax.swing.JDialog {
         rbGenap.setOpaque(false);
 
         comboStatus.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        comboStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih", "Sakit", "Izin", "Alpa" }));
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih", "Hadir", "Sakit", "Izin", "Alpa" }));
         comboStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboStatusActionPerformed(evt);
@@ -499,15 +499,23 @@ public class UbahAbsen extends javax.swing.JDialog {
             }
             
             if(comboStatus.getSelectedItem().equals("Sakit")){
-                absen.setSakit((Long) txtJmlh.getValue());
+                absen.setSakit(dtMin);
                 absen.setIzin(Long.valueOf(0));
                 absen.setAlpa(Long.valueOf(0));
+                absen.setHadir(Long.valueOf(0));
             }else if(comboStatus.getSelectedItem().equals("Izin")){
-                absen.setIzin((Long) txtJmlh.getValue());
+                absen.setIzin(dtMin);
                 absen.setAlpa(Long.valueOf(0));
                 absen.setSakit(Long.valueOf(0));
+                absen.setHadir(Long.valueOf(0));
+            }else if(comboStatus.getSelectedItem().equals("Alpa")){
+                absen.setAlpa(dtMin);
+                absen.setIzin(Long.valueOf(0));
+                absen.setSakit(Long.valueOf(0));
+                absen.setHadir(Long.valueOf(0));
             }else{
-                absen.setAlpa((Long) txtJmlh.getValue());
+                absen.setHadir(dtMin);
+                absen.setAlpa(Long.valueOf(0));
                 absen.setIzin(Long.valueOf(0));
                 absen.setSakit(Long.valueOf(0));
             }

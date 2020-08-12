@@ -204,7 +204,7 @@ public class TambahAbsen extends javax.swing.JDialog {
         jLabel5.setText("Semester");
 
         jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
-        jLabel9.setText("Ketidakhadiran");
+        jLabel9.setText("Satus");
 
         jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel10.setText(":");
@@ -244,7 +244,7 @@ public class TambahAbsen extends javax.swing.JDialog {
         rbGenap.setOpaque(false);
 
         comboStatus.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
-        comboStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih", "Sakit", "Izin", "Alpa" }));
+        comboStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pilih", "Hadir", "Sakit", "Izin", "Alpa" }));
         comboStatus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboStatusActionPerformed(evt);
@@ -489,12 +489,20 @@ public class TambahAbsen extends javax.swing.JDialog {
                 mp.setSakit(dtMin);
                 mp.setIzin(Long.valueOf(0));
                 mp.setAlpa(Long.valueOf(0));
+                mp.setHadir(Long.valueOf(0));
             }else if(comboStatus.getSelectedItem().equals("Izin")){
                 mp.setIzin(dtMin);
                 mp.setAlpa(Long.valueOf(0));
                 mp.setSakit(Long.valueOf(0));
-            }else{
+                mp.setHadir(Long.valueOf(0));
+            }else if(comboStatus.getSelectedItem().equals("Alpa")){
                 mp.setAlpa(dtMin);
+                mp.setIzin(Long.valueOf(0));
+                mp.setSakit(Long.valueOf(0));
+                mp.setHadir(Long.valueOf(0));
+            }else{
+                mp.setHadir(dtMin);
+                mp.setAlpa(Long.valueOf(0));
                 mp.setIzin(Long.valueOf(0));
                 mp.setSakit(Long.valueOf(0));
             }
