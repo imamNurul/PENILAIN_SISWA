@@ -613,6 +613,8 @@ public class TambahAbsen extends javax.swing.JDialog {
             labelJmlh.setText("Jumlah Sakit");
         }else if(comboStatus.getSelectedItem().equals("Izin")){
             labelJmlh.setText("Jumlah Izin");
+        }else if(comboStatus.getSelectedItem().equals("Hadir")){
+            labelJmlh.setText("Jumlah Hadir");
         }else{
             labelJmlh.setText("Jumlah Alpa");
         }

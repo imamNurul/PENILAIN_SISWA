@@ -135,7 +135,6 @@ public class MenuUtama extends javax.swing.JFrame {
         panelImageBackground1 = new MI_MAK.widget.PanelImageBackground();
         panelMenu = new javax.swing.JPanel();
         btnExit = new usu.widget.glass.ButtonImageReflection();
-        btnLogout = new usu.widget.glass.ButtonImageReflection();
         menuSiswa = new usu.widget.glass.ButtonImageReflection();
         menuGuru = new usu.widget.glass.ButtonImageReflection();
         menuMapel = new usu.widget.glass.ButtonImageReflection();
@@ -178,18 +177,10 @@ public class MenuUtama extends javax.swing.JFrame {
         panelMenu.setBackground(new java.awt.Color(166, 229, 104));
 
         btnExit.setForeground(new java.awt.Color(0, 0, 0));
-        btnExit.setText("Exit");
+        btnExit.setText("Keluar");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
-            }
-        });
-
-        btnLogout.setForeground(new java.awt.Color(0, 0, 0));
-        btnLogout.setText("Logout");
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -278,14 +269,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(menuUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(menuSiswa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(menuGuru, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(menuMapel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,7 +342,7 @@ public class MenuUtama extends javax.swing.JFrame {
                             .addComponent(labelTgl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PanelCard, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
+            .addComponent(PanelCard, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, Short.MAX_VALUE)
         );
         panelImageBackground1Layout.setVerticalGroup(
             panelImageBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,28 +399,6 @@ public class MenuUtama extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnExitActionPerformed
-
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
-
-        FadeImageTransition transition = new FadeImageTransition();
-        transition.setCoordinate(GraphicHelper.getLocation(PanelCard, jGlassPane1));
-
-        imageTransitionComponent1.setTransition(transition);
-        CardLayout layout = (CardLayout) PanelCard.getLayout();
-        layout.show(PanelCard, "welcome");
-
-        int closing;
-        closing = JOptionPane.showConfirmDialog(this,
-            "Apakah anda yakin, ingin logout dari Aplikasi ini...?", "Konfirmasi",JOptionPane.YES_NO_OPTION);
-        if (closing==0){
-            dispose();
-            logout();
-        }else{
-            this.show();
-        }
-
-    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void menuSiswaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSiswaActionPerformed
         // TODO add your handling code here:
@@ -562,7 +528,6 @@ public class MenuUtama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelCard;
     private usu.widget.glass.ButtonImageReflection btnExit;
-    private usu.widget.glass.ButtonImageReflection btnLogout;
     private com.stripbandunk.jglasspane.component.ImageTransitionComponent imageTransitionComponent1;
     private com.stripbandunk.jglasspane.JGlassPane jGlassPane1;
     private javax.swing.JLabel jLabel1;

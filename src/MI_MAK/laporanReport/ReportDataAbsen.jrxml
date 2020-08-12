@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="840" pageHeight="750" orientation="Landscape" columnWidth="820" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="900" pageHeight="750" orientation="Landscape" columnWidth="880" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -20,6 +20,7 @@
      tbl_absensi.`semester` AS tbl_absensi_semester,
      tbl_absensi.`tgl_dari` AS tbl_absensi_tgl_dari,
      tbl_absensi.`tgl_sampai` AS tbl_absensi_tgl_sampai,
+     tbl_absensi.`hadir` AS hadir,
      tbl_absensi.`sakit` AS tbl_absensi_sakit,
      tbl_absensi.`izin` AS tbl_absensi_izin,
      tbl_absensi.`alpa` AS tbl_absensi_alpa,
@@ -42,6 +43,9 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 	<field name="tbl_absensi_semester" class="java.lang.String"/>
 	<field name="tbl_absensi_tgl_dari" class="java.sql.Date"/>
 	<field name="tbl_absensi_tgl_sampai" class="java.sql.Date"/>
+	<field name="hadir" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tbl_absensi_sakit" class="java.lang.Integer"/>
 	<field name="tbl_absensi_izin" class="java.lang.Integer"/>
 	<field name="tbl_absensi_alpa" class="java.lang.Integer"/>
@@ -60,7 +64,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 	<title>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="820" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<reportElement x="0" y="0" width="879" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -73,7 +77,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Laporan Data Absensi Siswa di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="737" y="0" width="83" height="43" uuid="0d79c012-f43d-45f5-af6b-557b22bfe3ce"/>
+				<reportElement x="790" y="0" width="83" height="43" uuid="0d79c012-f43d-45f5-af6b-557b22bfe3ce"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
@@ -172,7 +176,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Tgl Absen Sampai]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="598" y="0" width="40" height="23" uuid="09266c2a-cc93-4181-b5cf-f3f3832284a0"/>
+				<reportElement x="657" y="0" width="40" height="23" uuid="09266c2a-cc93-4181-b5cf-f3f3832284a0"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -185,7 +189,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Sakit]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="638" y="0" width="40" height="23" uuid="61c0a588-f51b-4de0-b4a9-9ab665015926"/>
+				<reportElement x="697" y="0" width="40" height="23" uuid="61c0a588-f51b-4de0-b4a9-9ab665015926"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -198,7 +202,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Izin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="678" y="0" width="40" height="23" uuid="12e049ab-d9c6-40a6-ab67-c6228cca69dd"/>
+				<reportElement x="737" y="0" width="40" height="23" uuid="12e049ab-d9c6-40a6-ab67-c6228cca69dd"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -211,7 +215,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Alpa]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="718" y="0" width="102" height="23" uuid="d9ea16eb-c5ed-4a83-9b13-e5b6eaafe9c8"/>
+				<reportElement x="777" y="0" width="102" height="23" uuid="d9ea16eb-c5ed-4a83-9b13-e5b6eaafe9c8"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -222,6 +226,19 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Keterangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="598" y="0" width="59" height="23" uuid="9666e3c0-254a-4083-a8bc-7dc79b10e971"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hadir]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -319,7 +336,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_absensi_tgl_sampai}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="598" y="0" width="40" height="31" uuid="9997ca1d-7c46-4c57-84d6-1e8269387376"/>
+				<reportElement x="657" y="0" width="40" height="31" uuid="9997ca1d-7c46-4c57-84d6-1e8269387376"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -332,7 +349,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_absensi_sakit}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="638" y="0" width="40" height="31" uuid="2a0e451c-6cff-4bcc-95cf-934799f6d475"/>
+				<reportElement x="697" y="0" width="40" height="31" uuid="2a0e451c-6cff-4bcc-95cf-934799f6d475"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -345,7 +362,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_absensi_izin}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="678" y="0" width="40" height="31" uuid="0ab82adf-9bd3-4119-abdc-fce0f199f452"/>
+				<reportElement x="737" y="0" width="40" height="31" uuid="0ab82adf-9bd3-4119-abdc-fce0f199f452"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -358,7 +375,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<textFieldExpression><![CDATA[$F{tbl_absensi_alpa}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="718" y="0" width="102" height="31" uuid="6a249da3-ca78-4195-96d9-1173231ebfc6"/>
+				<reportElement x="777" y="0" width="102" height="31" uuid="6a249da3-ca78-4195-96d9-1173231ebfc6"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -370,19 +387,32 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
 			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="598" y="0" width="59" height="31" uuid="aed0a047-52dd-487d-8378-d08dd2d37789"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hadir}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="20" splitType="Stretch">
 			<textField evaluationTime="Report">
-				<reportElement x="780" y="0" width="40" height="20" forecolor="#000000" uuid="43c888b0-19c8-448e-aa23-5182c284d1d5"/>
+				<reportElement x="839" y="0" width="40" height="20" forecolor="#000000" uuid="43c888b0-19c8-448e-aa23-5182c284d1d5"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="11" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="729" y="0" width="51" height="20" forecolor="#000000" uuid="25733e01-37dc-4c69-b169-a6a5bfea202a"/>
+				<reportElement x="788" y="0" width="51" height="20" forecolor="#000000" uuid="25733e01-37dc-4c69-b169-a6a5bfea202a"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11" isBold="false"/>
 				</textElement>
@@ -393,7 +423,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 	<summary>
 		<band height="140" splitType="Stretch">
 			<staticText>
-				<reportElement x="626" y="8" width="180" height="19" uuid="4beab1b6-3d09-460d-84cd-9ba034e9d426"/>
+				<reportElement x="685" y="8" width="180" height="19" uuid="4beab1b6-3d09-460d-84cd-9ba034e9d426"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -406,7 +436,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="626" y="96" width="180" height="19" uuid="3c615abb-fbe6-4f36-93d0-cc7f68d0955c"/>
+				<reportElement x="685" y="96" width="180" height="19" uuid="3c615abb-fbe6-4f36-93d0-cc7f68d0955c"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -419,7 +449,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="626" y="27" width="180" height="19" uuid="08cd77ae-5387-473f-be69-0ae64fcad780"/>
+				<reportElement x="685" y="27" width="180" height="19" uuid="08cd77ae-5387-473f-be69-0ae64fcad780"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -432,7 +462,7 @@ tbl_absensi.`kd_siswa` LIKE '%$P!{kd_siswa}%']]>
 				<text><![CDATA[Kepala Sekolah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="626" y="115" width="180" height="19" uuid="dd7de7e5-6a35-41ed-adab-f3e86fada024"/>
+				<reportElement x="685" y="115" width="180" height="19" uuid="dd7de7e5-6a35-41ed-adab-f3e86fada024"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>

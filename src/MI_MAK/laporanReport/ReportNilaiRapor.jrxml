@@ -491,7 +491,7 @@ and nh.semester = $P{smester}]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Keridakhadiran :]]></text>
+				<text><![CDATA[Ketidakhadiran :]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="21" width="29" height="15" uuid="bbee1030-90ea-4108-9a68-8d1132889f82"/>
