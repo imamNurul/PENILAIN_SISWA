@@ -298,7 +298,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jLabel2.setText("Perancangan Sistem Informasi Pengolahan Nilai Raport  ");
 
         jLabel3.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel3.setText("DI MI MATHLA'UL ANWAR KOPO");
+        jLabel3.setText("Di MI MATHLA'UL ANWAR KOPO");
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 12)); // NOI18N
         jLabel1.setText("Copyright © 2020 MI MATHLAUL ANWAR KOPO");

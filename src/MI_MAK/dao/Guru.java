@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package MI_MAK.dao;
-import MI_MAK.widget.FlagCellRendererTable;
 import com.stripbandunk.jwidget.annotation.TableColumn;
 import java.sql.Timestamp;
 import java.util.Date;

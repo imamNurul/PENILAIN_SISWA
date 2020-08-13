@@ -310,7 +310,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="DI MI MATHLA&apos;UL ANWAR KOPO"/>
+            <Property name="text" type="java.lang.String" value="Di MI MATHLA&apos;UL ANWAR KOPO"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
