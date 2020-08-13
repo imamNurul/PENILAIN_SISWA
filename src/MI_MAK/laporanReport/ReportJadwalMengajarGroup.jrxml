@@ -104,18 +104,18 @@ order by kl.nama_kelas ASC, jm.kode_mengajar ASC, jm.jamMulai ASC]]>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="83" y="0" width="416" height="43" uuid="eba59786-12b3-42b0-993d-bc515386eb84"/>
+				<reportElement x="0" y="0" width="499" height="43" uuid="eba59786-12b3-42b0-993d-bc515386eb84"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Laporan Jadwal Mengajar Tahun Ajaran "+$F{tahunAjaran}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[	"Laporan Jadwal Mengajar Tahun Ajaran "+$F{tahunAjaran}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
