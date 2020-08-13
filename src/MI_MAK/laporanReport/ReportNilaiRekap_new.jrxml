@@ -75,14 +75,14 @@ and nh.tahun_ajaran = $P{thn_ajaran} and nh.semester = $P{smester}]]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="2"/>
 				</textElement>
-				<text><![CDATA[Laporan Data Nilai Siswa Rekap di MI MATHLAUL ANWAR KOPO]]></text>
+				<text><![CDATA[	   Laporan Data Nilai Siswa Rekap di MI MATHLAUL ANWAR KOPO]]></text>
 			</staticText>
 			<image>
-				<reportElement x="412" y="2" width="83" height="39" uuid="68ee5527-3fa1-4ae0-91c3-4110ed4818a3"/>
+				<reportElement x="6" y="4" width="83" height="39" uuid="68ee5527-3fa1-4ae0-91c3-4110ed4818a3"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
@@ -277,7 +277,7 @@ and nh.tahun_ajaran = $P{thn_ajaran} and nh.semester = $P{smester}]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Rapor]]></text>
+				<text><![CDATA[Rata-Rata]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
