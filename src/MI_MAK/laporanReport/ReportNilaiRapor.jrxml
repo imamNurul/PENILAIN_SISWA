@@ -596,9 +596,6 @@ and nh.semester = $P{smester}]]>
 			</staticText>
 			<textField>
 				<reportElement x="211" y="160" width="152" height="20" uuid="429fec34-64b2-4100-93e3-00778299b56b"/>
-				<box>
-					<bottomPen lineWidth="0.5"/>
-				</box>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12"/>
 				</textElement>
