@@ -632,7 +632,7 @@ and nh.semester = $P{smester}]]>
 				<text><![CDATA[Diberikan di :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="392" y="60" width="180" height="19" uuid="1ccb58c1-ea2b-4407-99a6-d22ebace5b0b"/>
+				<reportElement x="392" y="60" width="42" height="19" uuid="1ccb58c1-ea2b-4407-99a6-d22ebace5b0b"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -642,7 +642,7 @@ and nh.semester = $P{smester}]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+				<text><![CDATA[Jakarta, ]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="392" y="141" width="180" height="19" uuid="a9416e24-4e2e-440b-a59d-c50fe0f0fca5"/>
@@ -683,6 +683,13 @@ and nh.semester = $P{smester}]]>
 				</textElement>
 				<text><![CDATA[NIP.]]></text>
 			</staticText>
+			<textField pattern="EEEE d MMMM yyyy">
+				<reportElement x="434" y="60" width="138" height="19" uuid="f9b0d4b5-2b0e-4b3d-ae89-598464902f32"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

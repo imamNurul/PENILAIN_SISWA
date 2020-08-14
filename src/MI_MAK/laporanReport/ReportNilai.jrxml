@@ -357,7 +357,7 @@ AND th.`tahun_ajaran` = $P{thn_ajaran} AND th.`semester` = $P{smester}]]>
 	<summary>
 		<band height="140" splitType="Stretch">
 			<staticText>
-				<reportElement x="294" y="8" width="180" height="19" uuid="f11950c7-c6a0-46f3-b718-b01c8fbeec9c"/>
+				<reportElement x="276" y="8" width="42" height="19" uuid="f11950c7-c6a0-46f3-b718-b01c8fbeec9c"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -367,10 +367,10 @@ AND th.`tahun_ajaran` = $P{thn_ajaran} AND th.`semester` = $P{smester}]]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+				<text><![CDATA[Jakarta,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="294" y="96" width="180" height="19" uuid="41288ad6-9d61-4021-9188-75093de41d7f"/>
+				<reportElement x="276" y="96" width="189" height="19" uuid="41288ad6-9d61-4021-9188-75093de41d7f"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -383,7 +383,7 @@ AND th.`tahun_ajaran` = $P{thn_ajaran} AND th.`semester` = $P{smester}]]>
 				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="294" y="27" width="180" height="19" uuid="b2c7fd12-146c-43d6-a69a-55af674e3072"/>
+				<reportElement x="276" y="27" width="189" height="19" uuid="b2c7fd12-146c-43d6-a69a-55af674e3072"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -396,7 +396,7 @@ AND th.`tahun_ajaran` = $P{thn_ajaran} AND th.`semester` = $P{smester}]]>
 				<text><![CDATA[Kepala Sekolah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="294" y="115" width="180" height="19" uuid="720e864b-35bc-4d31-a99e-5673bd27b1ea"/>
+				<reportElement x="276" y="115" width="189" height="19" uuid="720e864b-35bc-4d31-a99e-5673bd27b1ea"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -408,6 +408,13 @@ AND th.`tahun_ajaran` = $P{thn_ajaran} AND th.`semester` = $P{smester}]]>
 				</textElement>
 				<text><![CDATA[NIP.]]></text>
 			</staticText>
+			<textField pattern="EEEE d MMMM yyyy">
+				<reportElement x="318" y="8" width="147" height="19" uuid="7f335210-3933-45a4-bc6e-79c4688abde8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>

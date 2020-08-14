@@ -36,6 +36,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRParameter;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -1136,6 +1137,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         Map<String, Object> param = new HashMap<>();
         param.put("kd_kelas", varKdKelas);
         param.put("kd_siswa", varKdSiswa);
+        param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
         try {
             param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
         } catch (JRException | IOException ex) {
@@ -1234,6 +1236,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         param.put("kd_guru", varKdGuru);
         param.put("kd_kelas", varKdWaliKelas);
         param.put("kd_mapel", varKdMapel);
+        param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
         try {
             param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
         } catch (JRException | IOException ex) {
@@ -1382,6 +1385,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         
          Map<String, Object> param = new HashMap<>();
         param.put("kd_mapel", varKdMapel);
+        param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
         System.out.println("mapel mapel :"+varKdMapel);
         InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
         try {
@@ -1498,6 +1502,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         
          Map<String, Object> param = new HashMap<>();
         param.put("kd_kelas", varKdKls);
+        param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
         System.out.println("kelas kelas :"+varKdKls);
         InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
         try {
@@ -1658,6 +1663,7 @@ public class PanelLaporan extends javax.swing.JPanel {
         param.put("kd_kelas", varKls);
         param.put("kd_guru", varGuru);
         param.put("hari", varHari);
+        param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
         System.out.println("kelas ngajar :"+varKls);
         System.out.println("guru ngajar :"+varGuru);
         System.out.println("hari ngajar :"+varHari);
@@ -1721,6 +1727,7 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("kd_kelas", lblKdKelasNilai.getText());
             param.put("thn_ajaran", thn1+"/"+thn2);
             param.put("smester", comboSmstrNilai.getSelectedItem().toString());
+            param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
             System.out.println("kd_mapel Nilai :"+lblKdMapelNilai.getText());
             System.out.println("kd_kelas Nilai :"+lblKdKelasNilai.getText());
             InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
@@ -1781,7 +1788,7 @@ public class PanelLaporan extends javax.swing.JPanel {
             Map<String, Object> param = new HashMap<>();
             param.put("kd_kelas", varKdKelas);
             param.put("kd_siswa", varKdSiswa);
-            
+            param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
             InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
         try {
             param.put("logo", ImageIO.read(new ByteArrayInputStream(JRLoader.loadBytes(logo))));
@@ -1970,6 +1977,7 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("kd_kelas", lblKdKelasNilai.getText());
             param.put("thn_ajaran", thn1+"/"+thn2);
             param.put("smester", comboSmstrNilai.getSelectedItem().toString());
+            param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
             System.out.println("kd_mapel Nilai :"+lblKdMapelNilai.getText());
             System.out.println("kd_kelas Nilai :"+lblKdKelasNilai.getText());
         InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
@@ -2029,6 +2037,7 @@ public class PanelLaporan extends javax.swing.JPanel {
             param.put("kd_siswa", lblKdSiswaNilai.getText());
             param.put("thn_ajaran", thn1+"/"+thn2);
             param.put("smester", comboSmstrNilai.getSelectedItem().toString());
+            param.put(JRParameter.REPORT_LOCALE, new Locale("in", "ID"));
 
             InputStream logo = getClass().getResourceAsStream("/MI_MAK/image/logo_crope.png");
         try {

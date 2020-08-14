@@ -182,7 +182,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 	<summary>
 		<band height="140" splitType="Stretch">
 			<staticText>
-				<reportElement x="288" y="7" width="180" height="19" uuid="0ec4eaab-239b-467b-95ac-d0f3131de359"/>
+				<reportElement x="267" y="7" width="61" height="19" uuid="0ec4eaab-239b-467b-95ac-d0f3131de359"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -192,10 +192,10 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Jakarta, .......  .......................... 20....]]></text>
+				<text><![CDATA[Jakarta,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="288" y="95" width="180" height="19" uuid="18c0b2cf-cc8c-47ed-ac22-b7f2091dcde8"/>
+				<reportElement x="267" y="95" width="199" height="19" uuid="18c0b2cf-cc8c-47ed-ac22-b7f2091dcde8"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -208,7 +208,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<text><![CDATA[A. NURHIDAYAT, S.Pd.I]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="288" y="26" width="180" height="19" uuid="a054767a-e477-421e-b8dc-04c4d1c50f4a"/>
+				<reportElement x="267" y="26" width="199" height="19" uuid="a054767a-e477-421e-b8dc-04c4d1c50f4a"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -221,7 +221,7 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				<text><![CDATA[Kepala Sekolah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="288" y="114" width="180" height="19" uuid="6f7b2f08-90f8-4e88-ae2e-ebc12e708d64"/>
+				<reportElement x="267" y="114" width="199" height="19" uuid="6f7b2f08-90f8-4e88-ae2e-ebc12e708d64"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="0.0"/>
@@ -233,6 +233,13 @@ where tbl_mapel.`kd_mapel` like '%$P!{kd_mapel}%']]>
 				</textElement>
 				<text><![CDATA[NIP.]]></text>
 			</staticText>
+			<textField pattern="EEEE d MMMM yyyy">
+				<reportElement x="309" y="7" width="157" height="19" uuid="16642a28-210b-4ce9-aa23-414b5b399421"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
