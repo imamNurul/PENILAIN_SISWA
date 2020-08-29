@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReportDataSiswa" pageWidth="970" pageHeight="750" orientation="Landscape" columnWidth="950" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10" uuid="24eaac14-8652-4e85-bdf6-46bb10ee3d17">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="212"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="kd_siswa" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -64,9 +64,9 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="43" splitType="Stretch">
+		<band height="67" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="950" height="43" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
+				<reportElement x="-1" y="0" width="950" height="35" uuid="fa97b98d-5b9f-4c45-aae2-2057d2a929f6"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -77,12 +77,26 @@ tbl_siswa.`tahun_masuk` LIKE '%$P!{thn_masuk}%']]>
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[Laporan Data Siswa di MI MATHLAUL ANWAR KOPO]]></text>
+				<text><![CDATA[Laporan Data Siswa]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="83" height="39" uuid="ff22291d-3572-42a6-b384-badc0e68c550"/>
+				<reportElement x="0" y="0" width="106" height="56" uuid="ff22291d-3572-42a6-b384-badc0e68c550"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="0" y="35" width="950" height="32" uuid="46ac8a5a-c41b-458b-9b6e-752a81a7e529"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Di MI MATHLAUL ANWAR KOPO]]></text>
+			</staticText>
 		</band>
 	</title>
 	<columnHeader>

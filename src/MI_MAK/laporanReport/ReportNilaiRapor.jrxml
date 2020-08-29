@@ -126,7 +126,7 @@ and nh.semester = $P{smester}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="43">
+		<band height="68">
 			<staticText>
 				<reportElement x="0" y="0" width="580" height="43" uuid="5e4723b7-b838-4ca9-8fdb-bb282689e2f3"/>
 				<box>
@@ -139,12 +139,26 @@ and nh.semester = $P{smester}]]>
 					<font fontName="Calibri" size="14" isBold="true"/>
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[Laporan Nilai Rapot Siswa di MI MATHLAUL ANWAR KOPO]]></text>
+				<text><![CDATA[Laporan Nilai Rapot Siswa]]></text>
 			</staticText>
 			<image>
 				<reportElement x="4" y="0" width="83" height="39" uuid="a38ba0ee-7496-47da-b967-0e2b6801b754"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="0" y="43" width="580" height="24" uuid="b53e3ac1-703c-4294-92fd-fa07b236b5de"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Di MI MATHLAUL ANWAR KOPO]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
